@@ -1,95 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="c7b67a59414ff37fd1b4df7b98bbca1eee7ec6dc" content="c7b67a59414ff37fd1b4df7b98bbca1eee7ec6dc" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team ABH PK</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-(function(yxlv){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = yxlv || {};
-s.src = "\/\/excellent-challenge.com\/b-XAVJs.d\/Gzl-0xYYWNd\/i\/YnWT5NugZKXzIW\/EeWmx9ruEZiUPl\/kXPsT\/UGy-NfjcEs2MOQDngotyNxT\/IH2kMFTBYN4zOFQl";
-s.async = true;
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-    <script type="text/javascript" data-cfasync="false">
-/*<![CDATA[/* */
-(function(){var q=window,w="a6ae4b952cb7bd873d23fa85a49ef215",v=[["siteId",105+689-792-769-223+5079288],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],e=["d3d3LmNkbjRhZHMuY29tL3ViZWF1dGlmeS5taW4uY3Nz","ZDNnNW92Zm5nanc5YncuY2xvdWRmcm9udC5uZXQvY29tbW9uL3dqc2ZlYXQtbWluLmpz"],b=-1,u,x,h=function(){clearTimeout(x);b++;if(e[b]&&!(1735273240000<(new Date).getTime()&&1<b)){u=q.document.createElement("script");u.type="text/javascript";u.async=!0;var s=q.document.getElementsByTagName("script")[0];u.src="https://"+atob(e[b]);u.crossOrigin="anonymous";u.onerror=h;u.onload=function(){clearTimeout(x);q[w.slice(0,16)+w.slice(0,16)]||h()};x=setTimeout(h,5E3);s.parentNode.insertBefore(u,s)}};if(!q[w]){try{Object.freeze(q[w]=v)}catch(e){}h()}})();
-/*]]>/* */
-</script>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TechEra Software - Innovative Software Solutions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin:0; padding:0;
+    background: #f9fafb;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  header {
+    background: #1a202c;
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #48bb78;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 1.5rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    color: #48bb78;
+    outline: none;
+  }
+  .hero {
+    background: linear-gradient(90deg, #48bb78 0%, #2f855a 100%);
+    color: white;
+    padding: 5rem 2rem 6rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height:1.5;
+  }
+  .btn-primary {
+    background: white;
+    color: #2f855a;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgb(72 187 120 / 0.4);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background: #2f855a;
+    color: white;
+    outline: none;
+  }
+  main {
+    max-width: 1100px;
+    margin: 3rem auto 6rem;
+    padding: 0 1rem;
+  }
+  section {
+    margin-bottom: 4rem;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #48bb78;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .feature-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgb(0 0 0 / 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-8px);
+  }
+  .feature-card svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    fill: #48bb78;
+  }
+  .feature-card h3 {
+    margin: 1rem 0 0.5rem;
+    font-weight: 700;
+    color: #2d3748;
+  }
+  .feature-card p {
+    font-size: 0.9rem;
+    color: #4a5568;
+  }
+  .apps-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .app-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+  }
+  .app-card:hover {
+    box-shadow: 0 20px 30px rgb(72 187 120 / 0.4);
+  }
+  .app-image {
+    background: #e6fffa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+  }
+  .app-image img {
+    max-height: 100px;
+    max-width: 100%;
+  }
+  .app-content {
+    padding: 1rem 1.5rem 2rem;
+    flex-grow: 1;
+  }
+  .app-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+  }
+  .app-desc {
+    font-size: 0.95rem;
+    color: #4a5568;
+  }
+  footer {
+    background: #1a202c;
+    color: #a0aec0;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer a {
+    color: #48bb78;
+    text-decoration: none;
+  }
+  footer .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Team ABH PK</h1>
-    </header>
-    
-    <nav>
-        <a href="#">Home</a>
-        <a href="aboutab2d.html">About</a>
-        <a href="#">Services</a>
-        <a href="#contact">Contact</a>
+
+<header>
+  <div class="container">
+    <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
     </nav>
+  </div>
+</header>
 
-    <section class="container">
-        <h2>Welcome to our website</h2>
-        <p>This is an application developer site , we believe Equality </p>
-        <br>
-        <a href="aboutab2d.html" class="btn">Learn More</a>
-    </section>
-    
-    <section class="app-list">
-        <div class="app-list-item">
-            <img src="asset/mrearn.png" alt="App 1 Logo" class="app-logo">
-            <h3>Mrearn</h3>
-            <a href="https://www.mediafire.com/file/6msoo1t3uhe1t45/Mr_earn.apk/file" class="app-download-btn">Download</a>
-        </div>
-        <div class="app-list-item">
-            <img src="asset/ab.png" alt="App 2 Logo" class="app-logo">
-            <h3>Ab2d Pro</h3>
-            <a href="https://www.mediafire.com/file/6bqh6jdhfy74jjr/ab2dengine.apk/file" class="app-download-btn">Download</a>
-        </div>
-        <div class="app-list-item">
-            <img src="asset/abb.png" alt="App 3 Logo" class="app-logo">
-            <h3>Al Quran</h3>
-            <a href="https://www.mediafire.com/file/k0srf0lnylquftu/Al_Quran.apk/file" class="app-download-btn">Download</a>
-        </div>
-        <div class="app-list-item">
-            <img src="asset/ab.png" alt="App 4 Logo" class="app-logo">
-            <h3>Export</h3>
-            <a href="https://www.mediafire.com/file/nq7bihc9792rtmc/Ab2dExportEngine.apk/file" class="app-download-btn">Download</a>
-        </div>
-        <div class="app-list-item">
-            <img src="asset/ab.png" alt="App 5 Logo" class="app-logo">
-            <h3>Watch Time</h3>
-            <a href="https://www.mediafire.com/file/q9e9uoq56smxgj4/Watch_Time.apk/file" class="app-download-btn">Download</a>
-        </div>
-    </section>
-<a href="https://www.popads.net/users/refer/3467094"><img src="http://banners.popads.net/468x60.gif" alt="PopAds.net - The Best Popunder Adnetwork" /></a>
-    <footer>
-        <div class="footer-content">
-            <img src="asset/ab.png" alt="Footer Logo" class="footer-logo">
-            <div id="contact" class="footer-contact-info">
-                <p>Contact us:</p>
-                <p>Email: <a href="mailto:teamabhpk@gmail.com" class="email-link">teamabhpk@gmail.com</a></p>
-                <p>Phone: <a href="tel:+923431175490" class="phone-number">+923431175490</a></p>
-            </div>
+<main role="main">
+  <section class="hero" aria-label="Company Introduction">
+    <h1>Innovative Software Solutions for a Digital World</h1>
+    <p>At TechEra, we craft powerful and elegant software applications that help businesses accelerate their growth and optimize operations.</p>
+    <a href="apps.html" class="btn-primary">Explore Our Apps</a>
+  </section>
 
-            <div class="footer-social-media">
-                <p>Follow us:</p>
-                <a href="https://youtube.com/@mr_-A?si=1JCYLB7C4SLg8yac"><img src="asset/Youtube-logo-vector-PNG.png" alt="YouTube"></a>
-                <a href="https://youtube.com/@Ab2d?si=8pLLxqjpnEH6e1jG"><img src="asset/Youtube-logo-vector-PNG.png" alt="YouTube"></a>
-                <a href="https://www.facebook.com/abdulbasitkhandasti161?mibextid=ZbWKwL"><img src="asset/Popular-facebook-Logo-png.png" alt="Facebook"></a>
-                <a href="https://www.tiktok.com/@bint_e_hwa_26?_t=8kHacRqSYOl&_r=1"><img src="asset/vecteezy_tiktok-png-icon_16716450.png" alt="TikTok"></a>
-                <a href="https://wa.me/923431175490?text=I%20am%20from%20your%20webpage"><img src="asset/whatsapp-logo-png-2261.png" alt="Whatsapp"></a>
-            </div>
-            <a class="copyright" href="#">copyright 2024-26 All rights Reserved</a>
+  <section aria-labelledby="features-title">
+    <h2 class="section-title" id="features-title">What We Offer</h2>
+    <div class="features-grid">
+      <article class="feature-card" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 2L2 7v7a10 10 0 0020 0V7l-10-5z"/></svg>
+        <h3>Custom Software Development</h3>
+        <p>Tailored software crafted to fit your business processes and goals precisely.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+        <h3>Cloud & Infrastructure</h3>
+        <p>Scalable cloud solutions and infrastructure services supporting modern workloads.</p>
+      </article>
+      <article class="feature-card" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2" ry="2"/></svg>
+        <h3>Consulting & Strategy</h3>
+        <p>Expert advisory services to shape technology strategy and digital transformation.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="apps-title">
+    <h2 class="section-title" id="apps-title">Our Notable Apps</h2>
+    <div class="apps-showcase">
+      <article class="app-card" tabindex="0">
+        <div class="app-image" aria-label="App 1: TaskMaster">
+          <img src="https://via.placeholder.com/150x100?text=TaskMaster" alt="TaskMaster App Logo"/>
         </div>
-    </footer>
+        <div class="app-content">
+          <h3 class="app-title">TaskMaster</h3>
+          <p class="app-desc">An intuitive productivity app to organize your daily tasks, collaborate with teams, and stay on top of deadlines effortlessly.</p>
+        </div>
+      </article>
+      <article class="app-card" tabindex="0">
+        <div class="app-image" aria-label="App 2: CloudSync">
+          <img src="https://via.placeholder.com/150x100?text=CloudSync" alt="CloudSync App Logo"/>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">CloudSync</h3>
+          <p class="app-desc">Seamlessly sync and backup your files across devices with end-to-end encryption and smart version control.</p>
+        </div>
+      </article>
+      <article class="app-card" tabindex="0">
+        <div class="app-image" aria-label="App 3: DataSight">
+          <img src="https://via.placeholder.com/150x100?text=DataSight" alt="DataSight App Logo"/>
+        </div>
+        <div class="app-content">
+          <h3 class="app-title">DataSight</h3>
+          <p class="app-desc">Powerful business analytics dashboards providing data-driven insights to make informed decisions quickly.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 TechEra Software. All rights reserved.</p>
+    <p>Follow us on
+      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
+      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </p>
+  </div>
+</footer>
+
 </body>
 </html>
+
