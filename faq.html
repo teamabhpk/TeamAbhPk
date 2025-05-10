@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TechEra Software - Frequently Asked Questions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin:0; padding:0;
+    background: #f9fafb;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  header {
+    background: #1a202c;
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #48bb78;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 1.5rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    color: #48bb78;
+    outline: none;
+  }
+  .hero {
+    background: linear-gradient(90deg, #48bb78 0%, #2f855a 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height:1.5;
+  }
+  main {
+    max-width: 900px;
+    margin: 3rem auto 6rem;
+    padding: 0 1rem;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #48bb78;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  .faq-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgb(0 0 0 / 0.05);
+    overflow: hidden;
+  }
+  .faq-item {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+  .faq-question {
+    padding: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #2d3748;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+  .faq-question:hover {
+    background-color: #f8fafc;
+  }
+  .faq-question:focus {
+    outline: 2px solid #48bb78;
+    outline-offset: -2px;
+  }
+  .faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: #48bb78;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: #4a5568;
+  }
+  .faq-item.active .faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 500px;
+  }
+  .contact-prompt {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f0fff4;
+    border-radius: 10px;
+  }
+  .btn-primary {
+    background: #48bb78;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 500px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgb(72 187 120 / 0.4);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 1rem;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background: #2f855a;
+    color: white;
+    outline: none;
+  }
+  footer {
+    background: #1a202c;
+    color: #a0aec0;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer a {
+    color: #48bb78;
+    text-decoration: none;
+  }
+  footer .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .faq-question {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html" aria-current="page">FAQ</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main role="main">
+  <section class="hero" aria-label="FAQ Introduction">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about our products, services, and company policies.</p>
+  </section>
+
+  <section aria-labelledby="faq-title">
+    <h2 class="section-title" id="faq-title">General Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What types of software solutions does TechEra offer?
+        </div>
+        <div class="faq-answer">
+          <p>TechEra provides a wide range of software solutions including custom business applications, cloud-based SaaS products, mobile apps, enterprise software, and AI-powered tools. Our solutions are tailored to meet specific industry needs across healthcare, finance, education, and more.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          How can I request a demo of your products?
+        </div>
+        <div class="faq-answer">
+          <p>You can request a demo by visiting our <a href="apps.html">Apps page</a> and clicking the "Request Demo" button on any product, or by contacting our sales team through our <a href="contact.html">Contact page</a>. We typically respond to demo requests within 1 business day.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What industries do you specialize in?
+        </div>
+        <div class="faq-answer">
+          <p>While our solutions are adaptable across industries, we have particular expertise in:</p>
+          <ul>
+            <li>Financial services and fintech</li>
+            <li>Healthcare and medical technology</li>
+            <li>Education and e-learning platforms</li>
+            <li>Retail and e-commerce</li>
+            <li>Manufacturing and logistics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="technical-title">
+    <h2 class="section-title" id="technical-title">Technical Support</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What are your system requirements?
+        </div>
+        <div class="faq-answer">
+          <p>System requirements vary by product. Most of our web applications work on modern browsers (Chrome, Firefox, Safari, Edge) with JavaScript enabled. Our desktop applications typically require:</p>
+          <ul>
+            <li>Windows 10/11 or macOS 10.15+</li>
+            <li>4GB RAM minimum (8GB recommended)</li>
+            <li>2GHz dual-core processor</li>
+            <li>500MB disk space</li>
+          </ul>
+          <p>Specific requirements are listed on each product's documentation page.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          How do I get technical support for your products?
+        </div>
+        <div class="faq-answer">
+          <p>We offer multiple support channels:</p>
+          <ul>
+            <li><strong>Email:</strong> support@techera.example.com (response within 24 hours)</li>
+            <li><strong>Phone:</strong> 1-800-TECH-ERA (Mon-Fri, 9AM-6PM EST)</li>
+            <li><strong>Live Chat:</strong> Available through our web portal during business hours</li>
+            <li><strong>Knowledge Base:</strong> Comprehensive documentation and troubleshooting guides</li>
+          </ul>
+          <p>Enterprise clients have access to priority 24/7 support.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          Do you provide API access to your platforms?
+        </div>
+        <div class="faq-answer">
+          <p>Yes, most of our enterprise products include robust API access. We provide:</p>
+          <ul>
+            <li>Comprehensive API documentation</li>
+            <li>Sample code in multiple languages</li>
+            <li>Developer sandbox environments</li>
+            <li>Technical support for integration</li>
+          </ul>
+          <p>API availability varies by product tier - please check the specific product details or contact our sales team for more information.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pricing-title">
+    <h2 class="section-title" id="pricing-title">Pricing & Licensing</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What pricing models do you offer?
+        </div>
+        <div class="faq-answer">
+          <p>We offer flexible pricing options to suit different needs:</p>
+          <ul>
+            <li><strong>Subscription:</strong> Monthly or annual SaaS pricing with tiered features</li>
+            <li><strong>Perpetual License:</strong> One-time purchase for on-premise solutions</li>
+            <li><strong>Usage-Based:</strong> Pay-as-you-go for some cloud services</li>
+            <li><strong>Enterprise:</strong> Custom pricing for large deployments</li>
+          </ul>
+          <p>Most products offer free trials or demo versions. Visit our <a href="apps.html">Apps page</a> for specific pricing details.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          Do you offer discounts for non-profits or educational institutions?
+        </div>
+        <div class="faq-answer">
+          <p>Yes, we provide special pricing for:</p>
+          <ul>
+            <li>Registered non-profit organizations (50% discount)</li>
+            <li>Educational institutions (40% discount)</li>
+            <li>Startups in accelerator programs (30% discount for first year)</li>
+          </ul>
+          <p>Please contact our sales team with proof of eligibility to access these discounts.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What is your refund policy?
+        </div>
+        <div class="faq-answer">
+          <p>Our refund policy varies by product:</p>
+          <ul>
+            <li><strong>SaaS Subscriptions:</strong> Full refund within 30 days of initial purchase</li>
+            <li><strong>Perpetual Licenses:</strong> 90-day money-back guarantee</li>
+            <li><strong>Custom Development:</strong> Milestone-based payments with cancellation terms outlined in contract</li>
+          </ul>
+          <p>Refunds are processed within 10 business days. Some restrictions may apply - please see our <a href="terms.html">Terms of Service</a> for complete details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="company-title">
+    <h2 class="section-title" id="company-title">Company Information</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          Where is TechEra located?
+        </div>
+        <div class="faq-answer">
+          <p>Our headquarters is in San Francisco, California, with additional offices in:</p>
+          <ul>
+            <li>New York, NY</li>
+            <li>Austin, TX</li>
+            <li>London, UK</li>
+            <li>Bangalore, India</li>
+          </ul>
+          <p>We serve clients worldwide with remote teams across multiple time zones. Our development centers are located in tech hubs globally to ensure round-the-clock productivity.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          How can I join your team?
+        </div>
+        <div class="faq-answer">
+          <p>We're always looking for talented individuals! You can:</p>
+          <ol>
+            <li>Browse current openings on our <a href="careers.html">Careers page</a></li>
+            <li>Submit a general application if you don't see a matching position</li>
+            <li>Attend one of our recruiting events (listed on our Careers page)</li>
+            <li>Connect with our recruiters on LinkedIn</li>
+          </ol>
+          <p>Our hiring process typically includes resume screening, technical assessments, and multiple interview rounds.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">
+          What is TechEra's privacy policy?
+        </div>
+        <div class="faq-answer">
+          <p>We take data privacy seriously. Our comprehensive <a href="privacy.html">Privacy Policy</a> outlines:</p>
+          <ul>
+            <li>What information we collect</li>
+            <li>How we use and protect your data</li>
+            <li>Your rights regarding personal information</li>
+            <li>Our compliance with GDPR, CCPA, and other regulations</li>
+          </ul>
+          <p>We never sell customer data and implement industry-standard security measures to protect all information.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-prompt">
+    <h3>Still have questions?</h3>
+    <p>Our team is ready to help with any additional inquiries you may have.</p>
+    <a href="contact.html" class="btn-primary">Contact Us</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 TechEra Software. All rights reserved.</p>
+    <p>Follow us on
+      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
+      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+      
+      question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.classList.toggle('active');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
