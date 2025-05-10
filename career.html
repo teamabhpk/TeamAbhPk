@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Careers - Join TechEra Software</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0;
+    background: #f9fafb;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  header {
+    background: #1a202c;
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #48bb78;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 1.5rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    color: #48bb78;
+    outline: none;
+  }
+  main {
+    max-width: 900px;
+    margin: 3rem auto 6rem;
+    padding: 0 1rem;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #48bb78;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  .job-listing {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    margin-bottom: 2rem;
+    padding: 1.8rem 2rem;
+    transition: box-shadow 0.3s ease;
+  }
+  .job-listing:hover,
+  .job-listing:focus-within {
+    box-shadow: 0 18px 35px rgba(72,187,120,0.4);
+  }
+  .job-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.3rem;
+  }
+  .job-location {
+    font-weight: 600;
+    color: #48bb78;
+    margin-bottom: 1rem;
+  }
+  .job-desc {
+    color: #4a5568;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .apply-btn {
+    display: inline-block;
+    background: #48bb78;
+    color: white;
+    padding: 0.6rem 1.6rem;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgb(72 187 120 / 0.5);
+    transition: background-color 0.3s ease;
+  }
+  .apply-btn:hover,
+  .apply-btn:focus {
+    background: #2f855a;
+    outline: none;
+  }
+  .culture-section {
+    background: #e6fffa;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 6px 18px rgba(72,187,120,0.25);
+    margin-bottom: 3rem;
+  }
+  .culture-section h2 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #2f855a;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .culture-section p {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-align: center;
+  }
+  footer {
+    background: #1a202c;
+    color: #a0aec0;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer a {
+    color: #48bb78;
+    text-decoration: none;
+  }
+  footer .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    main {
+      margin: 2rem 1rem 4rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html" aria-current="page">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main role="main" aria-label="Careers and Job Opportunities">
+  <h1 class="section-title">Join Our Team</h1>
+
+  <section class="culture-section" aria-label="Company Culture">
+    <h2>Our Culture</h2>
+    <p>At TechEra, we believe innovation thrives in an inclusive, collaborative environment that encourages growth, creativity, and respect. Join us to build leading software that makes a difference.</p>
+  </section>
+
+  <section aria-label="Open Job Positions">
+    <article class="job-listing" tabindex="0">
+      <h3 class="job-title">Senior Software Engineer</h3>
+      <p class="job-location">Remote / New York, NY</p>
+      <p class="job-desc">We are looking for an experienced engineer to lead backend development with a focus on scalable distributed systems.</p>
+      <a href="mailto:careers@techerasoftware.com?subject=Application%20for%20Senior%20Software%20Engineer" class="apply-btn" role="button">Apply Now</a>
+    </article>
+
+    <article class="job-listing" tabindex="0">
+      <h3 class="job-title">Product Manager</h3>
+      <p class="job-location">San Francisco, CA</p>
+      <p class="job-desc">Lead product strategy for our flagship projects and coordinate cross-functional teams to deliver impact-driven solutions.</p>
+      <a href="mailto:careers@techerasoftware.com?subject=Application%20for%20Product%20Manager" class="apply-btn" role="button">Apply Now</a>
+    </article>
+
+    <article class="job-listing" tabindex="0">
+      <h3 class="job-title">UX/UI Designer</h3>
+      <p class="job-location">Remote</p>
+      <p class="job-desc">Create exceptional user experiences with innovative designs focused on usability and client satisfaction.</p>
+      <a href="mailto:careers@techerasoftware.com?subject=Application%20for%20UX%2FUI%20Designer" class="apply-btn" role="button">Apply Now</a>
+    </article>
+
+    <article class="job-listing" tabindex="0">
+      <h3 class="job-title">Cloud Solutions Architect</h3>
+      <p class="job-location">Austin, TX</p>
+      <p class="job-desc">Design and implement cloud infrastructure solutions for enterprise clients, ensuring security and scalability.</p>
+      <a href="mailto:careers@techerasoftware.com?subject=Application%20for%20Cloud%20Solutions%20Architect" class="apply-btn" role="button">Apply Now</a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 TechEra Software. All rights reserved.</p>
+    <p>Follow us on
+      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
+      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
