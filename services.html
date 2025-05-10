@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Services - TechEra Software</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin:0; padding:0;
+    background: #f9fafb;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  header {
+    background: #1a202c;
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #48bb78;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 1.5rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    color: #48bb78;
+    outline: none;
+  }
+  main {
+    max-width: 1000px;
+    margin: 3rem auto 6rem;
+    padding: 0 1rem;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1a202c;
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #48bb78;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .service-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease;
+    outline-offset: 3px;
+  }
+  .service-card:hover,
+  .service-card:focus-within {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 36px rgba(72,187,120,0.45);
+  }
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    fill: #48bb78;
+  }
+  .service-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+  }
+  .service-desc {
+    color: #4a5568;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  footer {
+    background: #1a202c;
+    color: #a0aec0;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  footer a {
+    color: #48bb78;
+    text-decoration: none;
+  }
+  footer .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    main {
+      margin: 2rem 1rem 4rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="apps.html">Apps</a></li>
+        <li><a href="services.html" aria-current="page">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main role="main" aria-label="Our Services">
+  <h1 class="section-title">Our Services</h1>
+  <div class="services-grid">
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M4 4h16v16H4z"/>
+      </svg>
+      <h2 class="service-title">Custom Software Development</h2>
+      <p class="service-desc">From concept to deployment, we build robust, tailor-made software solutions designed specifically for your business needs, leveraging the latest technologies.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+      </svg>
+      <h2 class="service-title">Cloud & Infrastructure</h2>
+      <p class="service-desc">Optimize your IT infrastructure with scalable cloud computing, migration, and managed services that ensure performance and reliability.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <rect width="20" height="14" x="2" y="5" rx="2" ry="2"/>
+      </svg>
+      <h2 class="service-title">Consulting & Strategy</h2>
+      <p class="service-desc">Our experts provide tailored technology strategy consulting to align your digital initiatives with business objectives for measurable impact.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M12 2l9 7-9 7-9-7 9-7z"/>
+      </svg>
+      <h2 class="service-title">Mobile App Development</h2>
+      <p class="service-desc">Create engaging and performant mobile applications for iOS and Android platforms, designed for your users’ needs and preferences.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M3 5h18v14H3z"/>
+      </svg>
+      <h2 class="service-title">UI/UX Design</h2>
+      <p class="service-desc">Our design team crafts intuitive, beautiful, and user-friendly interfaces that maximize user engagement and satisfaction.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <svg class="service-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <path d="M12 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      <h2 class="service-title">Support & Maintenance</h2>
+      <p class="service-desc">Reliable post-launch support, maintenance, and optimization to keep your software secure, up-to-date, and performing at its best.</p>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 TechEra Software. All rights reserved.</p>
+    <p>Follow us on
+      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
+      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
