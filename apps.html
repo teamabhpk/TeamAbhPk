@@ -8,10 +8,11 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   body {
     font-family: 'Inter', sans-serif;
-    margin:0; padding:0;
     background: #f9fafb;
     color: #2c3e50;
     line-height: 1.6;
@@ -19,10 +20,11 @@
   header {
     background: #1a202c;
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
   header .container {
     max-width: 1200px;
@@ -30,14 +32,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 1rem;
   }
   header a.logo {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
     color: #48bb78;
     text-decoration: none;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
+  
+  /* Mobile Menu Button */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
   nav ul {
     list-style: none;
     display: flex;
@@ -51,12 +66,19 @@
     color: white;
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: color 0.3s ease;
+    padding: 0.5rem;
   }
   nav a:hover, nav a:focus {
     color: #48bb78;
     outline: none;
   }
+  nav a[aria-current="page"] {
+    color: #48bb78;
+    font-weight: 700;
+  }
+  
   main {
     max-width: 1100px;
     margin: 3rem auto 6rem;
@@ -64,7 +86,7 @@
   }
   .section-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     margin-bottom: 2rem;
     color: #1a202c;
@@ -81,8 +103,8 @@
   }
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
   .app-card {
     background: white;
@@ -91,43 +113,44 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     outline-offset: 4px;
   }
   .app-card:hover,
   .app-card:focus-within {
     box-shadow: 0 14px 40px rgba(72,187,120,0.45);
+    transform: translateY(-5px);
   }
   .app-image {
     background: #e6fffa;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 160px;
-    padding: 20px;
+    height: clamp(140px, 20vw, 160px);
+    padding: 1rem;
   }
   .app-image img {
-    max-height: 120px;
+    max-height: 100px;
     max-width: 100%;
     object-fit: contain;
   }
   .app-content {
-    padding: 1.5rem 2rem 2rem;
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 2vw, 2rem) clamp(1.5rem, 2vw, 2rem);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
   .app-title {
     font-weight: 800;
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: 0.5rem;
     color: #2d3748;
   }
   .app-desc {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     color: #4a5568;
     flex-grow: 1;
-    margin-bottom: 1.75rem;
+    margin-bottom: clamp(1rem, 2vw, 1.75rem);
   }
   .app-features {
     list-style: disc inside;
@@ -135,6 +158,7 @@
     padding: 0;
     color: #38a169;
     font-weight: 600;
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   }
   .app-features li {
     margin-bottom: 0.5rem;
@@ -153,9 +177,67 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  @media (max-width: 600px) {
+  
+  /* Mobile Navigation */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      z-index: 1001;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: #1a202c;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+    
+    nav.active {
+      right: 0;
+    }
+    
+    nav ul {
+      flex-direction: column;
+    }
+    
+    nav li {
+      margin: 0.5rem 0;
+    }
+    
+    nav a {
+      display: block;
+      padding: 0.75rem;
+      border-radius: 4px;
+    }
+    
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
     main {
-      margin: 2rem 1rem 4rem;
+      margin: 2rem auto 4rem;
+    }
+  }
+  
+  /* Small screen adjustments */
+  @media (max-width: 480px) {
+    .app-card {
+      border-radius: 10px;
+    }
+    
+    .app-content {
+      padding: 1.25rem;
+    }
+    
+    .app-features {
+      font-size: 0.85rem;
     }
   }
 </style>
@@ -165,6 +247,7 @@
 <header>
   <div class="container">
     <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
+    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
     <nav aria-label="Primary Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -187,7 +270,7 @@
   <div class="apps-grid">
     <article class="app-card" tabindex="0">
       <div class="app-image" aria-label="TaskMaster App Logo">
-        <img src="https://via.placeholder.com/200x130?text=TaskMaster" alt="TaskMaster App Logo" />
+        <img src="https://via.placeholder.com/200x130?text=TaskMaster" alt="TaskMaster App Logo" loading="lazy" />
       </div>
       <div class="app-content">
         <h2 class="app-title">TaskMaster</h2>
@@ -203,7 +286,7 @@
 
     <article class="app-card" tabindex="0">
       <div class="app-image" aria-label="CloudSync App Logo">
-        <img src="https://via.placeholder.com/200x130?text=CloudSync" alt="CloudSync App Logo" />
+        <img src="https://via.placeholder.com/200x130?text=CloudSync" alt="CloudSync App Logo" loading="lazy" />
       </div>
       <div class="app-content">
         <h2 class="app-title">CloudSync</h2>
@@ -219,7 +302,7 @@
 
     <article class="app-card" tabindex="0">
       <div class="app-image" aria-label="DataSight App Logo">
-        <img src="https://via.placeholder.com/200x130?text=DataSight" alt="DataSight App Logo" />
+        <img src="https://via.placeholder.com/200x130?text=DataSight" alt="DataSight App Logo" loading="lazy" />
       </div>
       <div class="app-content">
         <h2 class="app-title">DataSight</h2>
@@ -235,7 +318,7 @@
 
     <article class="app-card" tabindex="0">
       <div class="app-image" aria-label="SecureChat App Logo">
-        <img src="https://via.placeholder.com/200x130?text=SecureChat" alt="SecureChat App Logo" />
+        <img src="https://via.placeholder.com/200x130?text=SecureChat" alt="SecureChat App Logo" loading="lazy" />
       </div>
       <div class="app-content">
         <h2 class="app-title">SecureChat</h2>
@@ -251,7 +334,7 @@
 
     <article class="app-card" tabindex="0">
       <div class="app-image" aria-label="CodeFlow App Logo">
-        <img src="https://via.placeholder.com/200x130?text=CodeFlow" alt="CodeFlow App Logo" />
+        <img src="https://via.placeholder.com/200x130?text=CodeFlow" alt="CodeFlow App Logo" loading="lazy" />
       </div>
       <div class="app-content">
         <h2 class="app-title">CodeFlow</h2>
@@ -277,6 +360,20 @@
     </p>
   </div>
 </footer>
+
+<script>
+  // Mobile menu toggle functionality
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('nav').classList.toggle('active');
+  });
+  
+  // Close menu when clicking on a link (for mobile)
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelector('nav').classList.remove('active');
+    });
+  });
+</script>
 
 </body>
 </html>
