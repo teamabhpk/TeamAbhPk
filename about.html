@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
   }
-  
+
   :root {
     --primary-color: #5de0e6;
     --accent-color: #8060e0;
@@ -21,7 +21,7 @@
     --transition: all 0.3s ease;
     --radius: 1.25rem;
   }
-  
+
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-color);
@@ -29,7 +29,97 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-  
+
+  /* Header */
+  header {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    color: var(--text-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  header a.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: transparent;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    text-decoration: none;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+  }
+
+  nav li {
+    margin: 0;
+  }
+
+  nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: var(--primary-color);
+  }
+
+  /* Mobile Menu */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    nav ul {
+      flex-direction: column;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    nav ul.active {
+      display: flex;
+    }
+
+    nav a {
+      display: block;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+    }
+  }
+
   /* Hero Background */
   .hero {
     height: 100vh;
@@ -44,7 +134,7 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .hero h1 {
     font-size: clamp(2.25rem, 6vw, 4rem);
     font-weight: 700;
@@ -57,7 +147,7 @@
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards 0.3s;
   }
-  
+
   .hero p {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
     max-width: 700px;
@@ -66,7 +156,7 @@
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards 0.6s;
   }
-  
+
   .btn-primary {
     display: inline-block;
     padding: 0.75rem 2rem;
@@ -81,77 +171,18 @@
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards 0.9s;
   }
-  
+
   .btn-primary:hover {
     transform: translateY(-4px);
   }
-  
-  /* Header */
-  header {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-    color: var(--text-color);
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  header a.logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: transparent;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    text-decoration: none;
-  }
-  
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 1.5rem;
-  }
-  
-  nav li {
-    margin: 0;
-  }
-  
-  nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    position: relative;
-    transition: color 0.3s;
-  }
-  
-  nav a:hover {
-    color: var(--primary-color);
-  }
-  
+
   /* Main Content */
   main {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
   }
-  
+
   .section-title {
     text-align: center;
     font-size: 2rem;
@@ -160,7 +191,7 @@
     color: var(--text-color);
     position: relative;
   }
-  
+
   .section-title::after {
     content: '';
     display: block;
@@ -170,16 +201,7 @@
     margin: 0.5rem auto 0;
     border-radius: 2px;
   }
-  
-  .about-section p {
-    font-size: 1rem;
-    color: var(--text-color);
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    line-height: 1.7;
-    text-align: center;
-  }
-  
+
   /* Footer */
   footer {
     background: var(--bg-color);
@@ -187,52 +209,22 @@
     padding: 2rem;
     text-align: center;
   }
-  
+
   footer a {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition);
   }
-  
+
   footer a:hover {
     text-decoration: underline;
   }
-  
+
   /* Animations */
   @keyframes fadeInUp {
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-  
-  /* Responsive Navigation */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-      z-index: 1001;
-    }
-    
-    nav ul {
-      flex-direction: column;
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
-      width: 75%;
-      padding: 1rem;
-    }
-    
-    nav.active ul {
-      display: flex;
-    }
-    
-    nav a {
-      display: block;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
     }
   }
 </style>
@@ -250,6 +242,10 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="team.html">Team</a></li>
       <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
   </nav>
 </header>
@@ -280,7 +276,7 @@
 <script>
   // Mobile menu toggle functionality
   document.querySelector('.menu-toggle').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
+    document.querySelector('nav ul').classList.toggle('active');
   });
 </script>
 
