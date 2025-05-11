@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Team Abh Pk</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
   * {
     box-sizing: border-box;
     margin: 0;
@@ -13,59 +13,108 @@
   }
   
   :root {
-    --primary-color: #48bb78;
-    --primary-dark: #2f855a;
-    --text-color: #2c3e50;
-    --text-light: #4a5568;
-    --bg-dark: #1a202c;
-    --bg-light: #f9fafb;
+    --primary-color: #5de0e6;
+    --accent-color: #8060e0;
+    --bg-color: #f9fafb;
+    --text-color: #1f2937;
     --white: #ffffff;
-    --light-green-bg: #edf7f4;
     --transition: all 0.3s ease;
+    --radius: 1.25rem;
   }
   
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--bg-light);
+    background: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
   }
   
-  /* Header & Navigation */
-  header {
-    background: var(--bg-dark);
+  /* Hero Background */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
     color: var(--white);
-    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--white), rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.3s;
+  }
+  
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 700px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.6s;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--white);
+    color: var(--accent-color);
+    font-weight: 700;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: transform var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.9s;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Header */
+  header {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    color: var(--text-color);
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  header .container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
   
   header a.logo {
     font-weight: 700;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    color: var(--primary-color);
+    font-size: 1.5rem;
+    color: transparent;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
     text-decoration: none;
-    letter-spacing: 1px;
   }
   
-  /* Mobile Menu Button */
   .menu-toggle {
     display: none;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--text-color);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -76,46 +125,46 @@
     display: flex;
     margin: 0;
     padding: 0;
+    gap: 1.5rem;
   }
   
   nav li {
-    margin-left: 1.5rem;
+    margin: 0;
   }
   
   nav a {
-    color: var(--white);
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: var(--transition);
-    padding: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s;
   }
   
-  nav a:hover, nav a:focus {
+  nav a:hover {
     color: var(--primary-color);
-    outline: none;
   }
   
   /* Main Content */
   main {
-    max-width: min(900px, 90%);
-    margin: clamp(2rem, 5vw, 3rem) auto clamp(4rem, 8vw, 6rem);
+    max-width: 1200px;
+    margin: 3rem auto;
     padding: 0 1rem;
   }
   
   .section-title {
     text-align: center;
-    font-size: clamp(1.75rem, 4vw, 2rem);
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    color: var(--bg-dark);
+    color: var(--text-color);
     position: relative;
   }
   
   .section-title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 80px;
     height: 4px;
     background: var(--primary-color);
     margin: 0.5rem auto 0;
@@ -123,48 +172,19 @@
   }
   
   .about-section p {
-    font-size: clamp(1rem, 2vw, 1.1rem);
-    color: var(--text-light);
-    max-width: min(700px, 90%);
-    margin: 1rem auto 2rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 0 auto 2rem;
     line-height: 1.7;
-  }
-  
-  /* Content Sections */
-  .history {
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    padding: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: clamp(2rem, 4vw, 3rem);
-  }
-  
-  .history h2 {
-    font-size: clamp(1.5rem, 3vw, 1.75rem);
-    margin-bottom: 1rem;
-    color: var(--bg-dark);
-  }
-  
-  .mission, .vision {
-    background: var(--light-green-bg);
-    border-radius: 12px;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: clamp(2rem, 4vw, 3rem);
-    box-shadow: 0 4px 12px rgba(72,187,120,0.2);
-  }
-  
-  .mission h3, .vision h3 {
-    color: var(--primary-dark);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    text-align: center;
   }
   
   /* Footer */
   footer {
-    background: var(--bg-dark);
-    color: #a0aec0;
-    padding: 2rem 1rem;
+    background: var(--bg-color);
+    color: #64748b;
+    padding: 2rem;
     text-align: center;
   }
   
@@ -178,68 +198,41 @@
     text-decoration: underline;
   }
   
-  footer .footer-content {
-    max-width: 900px;
-    margin: 0 auto;
+  /* Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
-  /* Mobile Navigation */
+  /* Responsive Navigation */
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
       z-index: 1001;
     }
     
-    nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: var(--bg-dark);
-      padding: 5rem 2rem 2rem;
-      transition: right 0.3s ease;
-      z-index: 1000;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    }
-    
-    nav.active {
-      right: 0;
-    }
-    
     nav ul {
       flex-direction: column;
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      width: 75%;
+      padding: 1rem;
     }
     
-    nav li {
-      margin: 0.5rem 0;
+    nav.active ul {
+      display: flex;
     }
     
     nav a {
       display: block;
-      padding: 0.75rem;
-      border-radius: 4px;
-    }
-    
-    nav a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-    
-    /* Adjust section padding for mobile */
-    .history, .mission, .vision {
-      padding: 1.25rem;
-    }
-  }
-  
-  /* Small screen adjustments */
-  @media (max-width: 480px) {
-    .section-title {
-      margin-bottom: 1.5rem;
-    }
-    
-    .about-section p {
-      margin-bottom: 1.5rem;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
     }
   }
 </style>
@@ -247,65 +240,47 @@
 <body>
 
 <header>
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="TechEra Software Home">Team Abh Pk</a>
-    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
-    <nav aria-label="Primary Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-    </nav>
-  </div>
+  <a href="index.html" class="logo">Team Abh Pk</a>
+  <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="apps.html">Apps</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="careers.html">Careers</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main role="main">
-  <section class="about-section" aria-labelledby="about-title">
-    <h1 class="section-title" id="about-title">About Team Abh Pk</h1>
-    <p>Team Abh Pk was founded by Abdul Basit , who was a student of Matric , He was bored to see plan to buy , then he decided to build free software for everyone.</p>
-    
-    <article class="history" tabindex="0">
-      <h2>Our Journey</h2>
-      <p> started in 2020 when Abdul Basit was using a software to develop his software, He saw premium plans that was irritating so He decided to make software company where he will develop software for free to everyone use.</p>
-    </article>
+<section class="hero">
+  <h1>Innovative Software Solutions</h1>
+  <p>Crafting powerful software to accelerate growth and optimize operations.</p>
+  <a href="apps.html" class="btn-primary">Discover More</a>
+</section>
 
-    <section class="mission" aria-labelledby="mission-title">
-      <h3 id="mission-title">Our Mission</h3>
-      <p>Our mission is to provide free softwares to everyone because we believe <bold>Equality</bold></p>
-    </section>
+<main>
+  <section class="about-section">
+    <h1 class="section-title">About Team Abh Pk</h1>
+    <p>Founded to create innovative software solutions that are accessible to everyone, fostering growth and equality in technology.</p>
   </section>
 </main>
 
 <footer>
-  <div class="footer-content">
-    <p>&copy;2025 Team Abh PK. All rights reserved.</p>
-    <p>Follow us on
-      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
-      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </p>
-  </div>
+  <p>&copy;2025 Team Abh PK. All rights reserved.</p>
+  <p>
+    Follow us on
+    <a href="#" target="_blank">Twitter</a>,
+    <a href="#" target="_blank">LinkedIn</a>,
+    <a href="#" target="_blank">Facebook</a>
+  </p>
 </footer>
 
 <script>
   // Mobile menu toggle functionality
   document.querySelector('.menu-toggle').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
-  });
-  
-  // Close menu when clicking on a link (for mobile)
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelector('nav').classList.remove('active');
-    });
   });
 </script>
 
