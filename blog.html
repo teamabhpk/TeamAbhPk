@@ -2,314 +2,255 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About - TechEra Software</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
   * {
     box-sizing: border-box;
-  }
-  body {
-    font-family: 'Inter', sans-serif;
-    margin: 0; padding: 0;
-    background: #f9fafb;
-    color: #2c3e50;
-    line-height: 1.6;
-  }
-  header {
-    background: #1a202c;
-    color: white;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  header .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  header a.logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #48bb78;
-    text-decoration: none;
-    letter-spacing: 2px;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
     margin: 0;
     padding: 0;
   }
-  nav li {
-    margin-left: 1.5rem;
+
+  :root {
+    --clr-primary: #5de0e6;
+    --clr-accent: #8060e0;
+    --clr-bg: #f0f4f8;
+    --clr-surface: rgba(255, 255, 255, 0.6);
+    --clr-text: #1f2937;
+    --transition: 0.5s ease;
+    --radius: 1.25rem;
   }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: var(--clr-surface);
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
   nav a {
-    color: white;
+    color: var(--clr-text);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1rem;
     transition: color 0.3s ease;
+    position: relative;
   }
-  nav a:hover, nav a:focus {
-    color: #48bb78;
-    outline: none;
+
+  nav a:hover {
+    color: var(--clr-primary);
   }
-  main {
-    max-width: 900px;
-    margin: 3rem auto 6rem;
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: var(--clr-primary);
+    transition: width var(--transition);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    color: #fff;
     padding: 0 1rem;
   }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  /* Section Title */
   .section-title {
     text-align: center;
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    color: #1a202c;
+    color: var(--clr-text);
     position: relative;
   }
+
   .section-title::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 4px;
-    background: #48bb78;
+    width: 80px;
+    height: 3px;
+    background: var(--clr-primary);
     margin: 0.5rem auto 0;
     border-radius: 2px;
   }
-  .hero-section {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 3rem;
-    padding: 4rem 2rem;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  .hero-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-  }
-  .hero-section p {
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .highlight {
-    color: #48bb78;
-  }
+
+  /* Content Card */
   .content-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-    margin-bottom: 2rem;
+    background: var(--clr-surface);
+    border-radius: var(--radius);
     padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
   .content-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(72,187,120,0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
   }
+
   .content-card h3 {
-    color: #2d3748;
     font-size: 1.5rem;
-    margin-top: 0;
+    font-weight: 600;
+    color: var(--clr-text);
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #f0fff4;
   }
+
   .content-card p {
-    color: #4a5568;
-    margin-bottom: 0.5rem;
+    color: #475569;
+    line-height: 1.5;
   }
+
   .stats-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin: 3rem 0;
   }
+
   .stat-card {
-    background: white;
+    background: var(--clr-surface);
+    border-radius: var(--radius);
     padding: 1.5rem;
-    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
+
   .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #48bb78;
+    color: var(--clr-primary);
     margin-bottom: 0.5rem;
   }
+
   .stat-label {
-    color: #4a5568;
-    font-weight: 600;
+    color: #475569;
+    font-weight: 500;
   }
-  .timeline {
-    position: relative;
-    margin: 3rem 0;
-    padding-left: 2rem;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 4px;
-    background: #e2e8f0;
-    border-radius: 2px;
-  }
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2rem;
-  }
-  .timeline-item:last-child {
-    padding-bottom: 0;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 0.5rem;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #48bb78;
-    border: 3px solid white;
-    box-shadow: 0 0 0 3px rgba(72,187,120,0.3);
-  }
-  .timeline-year {
-    font-weight: 700;
-    color: #48bb78;
-    margin-bottom: 0.25rem;
-  }
-  .timeline-title {
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 0.5rem;
-  }
-  .timeline-desc {
-    color: #4a5568;
-  }
+
   .values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin: 3rem 0;
   }
+
   .value-card {
-    background: #f7fafc;
-    border-radius: 12px;
+    background: var(--clr-surface);
+    border-radius: var(--radius);
     padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid #48bb78;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
+
   .value-title {
-    font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 0.75rem;
-  }
-  .value-desc {
-    color: #4a5568;
-    font-size: 0.95rem;
-  }
-  .cta-section {
-    background: #e6fffa;
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    margin-top: 3rem;
-    box-shadow: 0 10px 25px rgba(72,187,120,0.25);
-  }
-  .cta-section h2 {
-    color: #2f855a;
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-  .cta-section p {
-    color: #2c3e50;
-    max-width: 700px;
-    margin: 0 auto 1.5rem;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: #48bb78;
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 9999px;
+    font-size: 1.25rem;
     font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 5px 15px rgba(72,187,120,0.5);
-    transition: background-color 0.3s ease;
+    color: var(--clr-text);
+    margin-bottom: 0.5rem;
   }
-  .cta-btn:hover,
-  .cta-btn:focus {
-    background: #2f855a;
-    outline: none;
+
+  .value-desc {
+    color: #475569;
+    line-height: 1.4;
   }
+
+  /* Footer */
   footer {
-    background: #1a202c;
-    color: #a0aec0;
+    background: var(--clr-bg);
+    color: #475569;
     padding: 2rem 1rem;
     text-align: center;
   }
+
   footer a {
-    color: #48bb78;
+    color: var(--clr-primary);
     text-decoration: none;
   }
-  footer .footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  @media (max-width: 768px) {
-    .stats-container,
-    .values-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero-section h2 {
-      font-size: 2rem;
-    }
-    .hero-section p {
-      font-size: 1.1rem;
-    }
+
+  footer a:hover {
+    text-decoration: underline;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="TechEra Software Home">TechEra</a>
-    <nav aria-label="Primary Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-    </nav>
-  </div>
+  <a href="index.html" class="logo">TechEra</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html" aria-current="page">About</a>
+    <a href="apps.html">Apps</a>
+    <a href="services.html">Services</a>
+    <a href="team.html">Team</a>
+    <a href="careers.html">Careers</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
+
+<section class="hero">
+  <h1>About TechEra Software</h1>
+  <p>Innovative solutions to empower businesses and transform industries.</p>
+</section>
 
 <main role="main" aria-label="About TechEra Software">
   <h1 class="section-title">About TechEra</h1>
@@ -323,7 +264,6 @@
     <div class="content-card">
       <h3>Who We Are</h3>
       <p>TechEra Software is a leading technology company specializing in custom software development, cloud solutions, and digital product innovation. Based in San Francisco with offices in New York, Austin, and remote teams worldwide, we combine technical expertise with creative problem-solving to deliver exceptional results.</p>
-      <p>Our diverse team of engineers, designers, product managers, and industry experts work collaboratively to create solutions that are not just technically excellent but also user-focused and business-aligned.</p>
     </div>
   </section>
 
@@ -349,43 +289,7 @@
     </div>
   </section>
 
-  <section aria-label="Company History">
-    <h2 class="section-title">Our Journey</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-year">2015</div>
-        <div class="timeline-title">TechEra Founded</div>
-        <div class="timeline-desc">Started in San Francisco with a small team of 5 passionate engineers focused on mobile app development.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2017</div>
-        <div class="timeline-title">New York Office</div>
-        <div class="timeline-desc">Expanded operations to the East Coast and broadened our service offerings to include enterprise solutions.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2019</div>
-        <div class="timeline-title">Cloud Division Launch</div>
-        <div class="timeline-desc">Established dedicated cloud solutions team and achieved premier partnership status with major cloud providers.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2021</div>
-        <div class="timeline-title">Austin Office</div>
-        <div class="timeline-desc">Opened new technology center in Texas focusing on AI and machine learning solutions.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2023</div>
-        <div class="timeline-title">Global Remote Team</div>
-        <div class="timeline-desc">Embraced remote-first approach, expanding our talent pool worldwide and enhancing our 24/7 service capabilities.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-year">2024</div>
-        <div class="timeline-title">Innovation Lab</div>
-        <div class="timeline-desc">Launched dedicated R&D division to explore emerging technologies and develop proprietary solutions.</div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Company Values">
+  <section aria-label="Our Core Values">
     <h2 class="section-title">Our Core Values</h2>
     <div class="values-grid">
       <div class="value-card">
@@ -405,10 +309,6 @@
         <p class="value-desc">We operate with transparency and honesty in all our relationships and business practices.</p>
       </div>
       <div class="value-card">
-        <h3 class="value-title">User Focus</h3>
-        <p class="value-desc">We design and build with real people in mind, creating experiences that truly serve their needs.</p>
-      </div>
-      <div class="value-card">
         <h3 class="value-title">Sustainability</h3>
         <p class="value-desc">We develop solutions with longevity in mind, considering environmental and social impacts.</p>
       </div>
@@ -418,19 +318,17 @@
   <section class="cta-section" aria-label="Call to Action">
     <h2>Ready to Work With Us?</h2>
     <p>Whether you're looking to join our team or partner with us on your next project, we'd love to hear from you.</p>
-    <a href="contact.html" class="cta-btn">Get in Touch</a>
+    <a href="contact.html" class="btn-primary">Get in Touch</a>
   </section>
 </main>
 
 <footer>
-  <div class="footer-content">
-    <p>&copy; 2024 TechEra Software. All rights reserved.</p>
-    <p>Follow us on
-      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
-      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </p>
-  </div>
+  <p>&copy; 2025 TechEra Software. All rights reserved.</p>
+  <p>Follow us on 
+    <a href="#" target="_blank">Twitter</a>, 
+    <a href="#" target="_blank">LinkedIn</a>, 
+    <a href="#" target="_blank">Facebook</a>
+  </p>
 </footer>
 
 </body>
