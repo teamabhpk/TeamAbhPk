@@ -2,242 +2,253 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Team Abh PK</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
+
+  :root {
+    --primary-color: #5de0e6;
+    --accent-color: #8060e0;
+    --bg-color: #f9fafb;
+    --text-color: #1f2937;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+    --radius: 1.25rem;
+  }
+
   body {
     font-family: 'Inter', sans-serif;
-    background: #f9fafb;
-    color: #2c3e50;
+    background: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
   }
+
+  /* Header */
   header {
-    background: #1a202c;
-    color: white;
-    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    color: var(--text-color);
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  header .container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
+
   header a.logo {
     font-weight: 700;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    color: #48bb78;
+    font-size: 1.5rem;
+    color: transparent;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
     text-decoration: none;
-    letter-spacing: 1px;
   }
-  
-  /* Mobile Menu Button */
+
   .menu-toggle {
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: var(--text-color);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
   }
-  
+
   nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
+    gap: 1.5rem;
   }
+
   nav li {
-    margin-left: 1.5rem;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-    padding: 0.5rem;
-  }
-  nav a:hover, nav a:focus {
-    color: #48bb78;
-    outline: none;
-  }
-  nav a[aria-current="page"] {
-    color: #48bb78;
-    font-weight: 700;
-  }
-  
-  main {
-    max-width: 1100px;
-    margin: 3rem auto 6rem;
-    padding: 0 1rem;
-  }
-  .section-title {
-    text-align: center;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: #1a202c;
-    position: relative;
-  }
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 70px;
-    height: 4px;
-    background: #48bb78;
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
-  }
-  .apps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
-  .app-card {
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    outline-offset: 4px;
-  }
-  .app-card:hover,
-  .app-card:focus-within {
-    box-shadow: 0 14px 40px rgba(72,187,120,0.45);
-    transform: translateY(-5px);
-  }
-  .app-image {
-    background: #e6fffa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: clamp(140px, 20vw, 160px);
-    padding: 1rem;
-  }
-  .app-image img {
-    max-height: 100px;
-    max-width: 100%;
-    object-fit: contain;
-  }
-  .app-content {
-    padding: clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 2vw, 2rem) clamp(1.5rem, 2vw, 2rem);
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .app-title {
-    font-weight: 800;
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    margin-bottom: 0.5rem;
-    color: #2d3748;
-  }
-  .app-desc {
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    color: #4a5568;
-    flex-grow: 1;
-    margin-bottom: clamp(1rem, 2vw, 1.75rem);
-  }
-  .app-features {
-    list-style: disc inside;
     margin: 0;
-    padding: 0;
-    color: #38a169;
-    font-weight: 600;
-    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   }
-  .app-features li {
-    margin-bottom: 0.5rem;
-  }
-  footer {
-    background: #1a202c;
-    color: #a0aec0;
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-  footer a {
-    color: #48bb78;
+
+  nav a {
+    color: var(--text-color);
     text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s;
   }
-  footer .footer-content {
-    max-width: 900px;
-    margin: 0 auto;
+
+  nav a:hover {
+    color: var(--primary-color);
   }
-  
-  /* Mobile Navigation */
+
+  /* Mobile Menu */
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
-      z-index: 1001;
     }
-    
-    nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: #1a202c;
-      padding: 5rem 2rem 2rem;
-      transition: right 0.3s ease;
-      z-index: 1000;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    }
-    
-    nav.active {
-      right: 0;
-    }
-    
+
     nav ul {
       flex-direction: column;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(255, 255, 255, 0.9);
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
     }
-    
-    nav li {
-      margin: 0.5rem 0;
+
+    nav ul.active {
+      display: flex;
     }
-    
+
     nav a {
       display: block;
-      padding: 0.75rem;
-      border-radius: 4px;
-    }
-    
-    nav a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-    
-    main {
-      margin: 2rem auto 4rem;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
     }
   }
-  
-  /* Small screen adjustments */
-  @media (max-width: 480px) {
-    .app-card {
-      border-radius: 10px;
-    }
-    
-    .app-content {
-      padding: 1.25rem;
-    }
-    
-    .app-features {
-      font-size: 0.85rem;
+
+  /* Hero Background */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--white), rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.3s;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    max-width: 700px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.6s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--white);
+    color: var(--accent-color);
+    font-weight: 700;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: transform var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.9s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Main Content */
+  main {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .app-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 40px rgba(72, 187, 120, 0.45);
+  }
+
+  .app-content {
+    padding: 1.5rem;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--bg-color);
+    color: #64748b;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>
@@ -245,85 +256,64 @@
 <body>
 
 <header>
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="TechEra Software Home">Team Abh PK</a>
-    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
-    <nav aria-label="Primary Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="apps.html" aria-current="page">Apps</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
-    </nav>
-  </div>
+  <a href="index.html" class="logo">Team Abh PK</a>
+  <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="apps.html">Apps</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+  </nav>
 </header>
 
-<main role="main" aria-label="Our Applications">
-  <h1 class="section-title">Our Featured Applications</h1>
-  <div class="apps-grid">
-    <article class="app-card" tabindex="0">
-      <div class="app-image" aria-label="TaskMaster App Logo">
-        <img src="blanklogo.png" alt="TaskMaster App Logo" loading="lazy" />
-      </div>
-      <div class="app-content">
-        <h2 class="app-title">Ab2d Engine</h2>
-        <p class="app-desc">Create your Application or Webpage without coding Skills</p>
-        <ul class="app-features" aria-label="TaskMaster features">
-          <li>RVisual script system</li>
-          <li>Export to Apk</li>
-          <li>Chat with comunity</li>
-          <li>And more in App</li>
-        </ul>
-      </div>
-    </article>
+<section class="hero">
+  <h1>Innovative Software Solutions</h1>
+  <p>Crafting powerful software to accelerate growth and optimize operations.</p>
+  <a href="apps.html" class="btn-primary">Discover More</a>
+</section>
 
-    <article class="app-card" tabindex="0">
-      <div class="app-image" aria-label="CloudSync App Logo">
-        <img src="app_icon.png" alt="App Logo" loading="lazy" />
-      </div>
-      <div class="app-content">
-        <h2 class="app-title">CloudSync</h2>
-        <p class="app-desc">An earning apllicatin without any investment or Scam</p>
-        <ul class="app-features" aria-label="CloudSync features">
-          <li>Earn by Ads</li>
-          <li>No investment</li>
-          <li>read Holy Books</li>
-          <li>Withdraw money</li>
-        </ul>
-      </div>
-    </article>
-  </div>
+<main>
+  <section class="about-section">
+    <h1 class="section-title">Our Featured Applications</h1>
+    <div class="apps-grid">
+      <article class="app-card">
+        <div class="app-content">
+          <h2>CloudSync</h2>
+          <p>Earn money without investment or scams by reading Holy Books and watching ads.</p>
+        </div>
+      </article>
+      <article class="app-card">
+        <div class="app-content">
+          <h2>Ab2d Engine</h2>
+          <p>Turn your ideas into software using our visual scripting system and export to APK.</p>
+        </div>
+      </article>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="footer-content">
-    <p>&copy;2025 Team Abh Pk. All rights reserved.</p>
-    <p>Follow us on
-      <a href="#" aria-label="TechEra Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
-      <a href="#" aria-label="TechEra LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="#" aria-label="TechEra Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </p>
-  </div>
+  <p>&copy;2025 Team Abh PK. All rights reserved.</p>
+  <p>
+    Follow us on
+    <a href="#" target="_blank">Twitter</a>,
+    <a href="#" target="_blank">LinkedIn</a>,
+    <a href="#" target="_blank">Facebook</a>
+  </p>
 </footer>
 
 <script>
   // Mobile menu toggle functionality
   document.querySelector('.menu-toggle').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
-  });
-  
-  // Close menu when clicking on a link (for mobile)
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelector('nav').classList.remove('active');
-    });
+    document.querySelector('nav ul').classList.toggle('active');
   });
 </script>
 
