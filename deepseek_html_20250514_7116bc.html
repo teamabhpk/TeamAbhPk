@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="blanklogo.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Abh Pk - Software Solutions & Esports</title>
+  <meta name="description" content="Team ABH PK is a leading software development and esports organization based in Pakistan. We create innovative apps and compete in professional gaming tournaments.">
+  <meta name="keywords" content="Team ABH PK, software development Pakistan, esports Pakistan, gaming team, PUBG Mobile, Free Fire, app developers">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://teamabhpk.me/">
+  <meta property="og:title" content="Team ABH PK – Software Development & Esports Professionals">
+  <meta property="og:description" content="Innovative software solutions and competitive esports from Pakistan's premier tech-gaming hybrid organization.">
+  <meta property="og:image" content="https://teamabhpk.me/images/social-preview.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://teamabhpk.me/">
+  <meta name="twitter:title" content="Team ABH PK – Software Development & Esports Professionals">
+  <meta name="twitter:description" content="Innovative software solutions and competitive esports from Pakistan's premier tech-gaming hybrid organization.">
+  <meta name="twitter:image" content="https://teamabhpk.me/images/social-preview.jpg">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --clr-primary: #5de0e6;
+      --clr-accent: #8060e0;
+      --clr-bg: #f0f4f8;
+      --clr-surface: rgba(255, 255, 255, 0.6);
+      --clr-text: #1f2937;
+      --transition: 0.5s ease;
+      --radius: 1.25rem;
+      --shadow: 0 20px 40px rgba(0,0,0,0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(12px);
+      background: var(--clr-surface);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      -webkit-background-clip: text; color: transparent;
+    }
+    nav { display: flex; gap: 1.5rem; }
+    nav a {
+      position: relative; padding: .5rem; font-weight: 500;
+      color: var(--clr-text); text-decoration: none;
+      transition: color .3s;
+    }
+    nav a::after {
+      content: ""; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--clr-primary);
+      transition: width var(--transition);
+    }
+    nav a:hover { color: var(--clr-primary); }
+    nav a:hover::after { width: 100%; }
+
+    /* HERO */
+    .hero {
+      height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 0 1rem;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.2;
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.8));
+      -webkit-background-clip: text; color: transparent;
+      margin-bottom: 1rem;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeInUp .8s forwards .3s;
+    }
+    .hero p {
+      font-size: clamp(1rem,2.5vw,1.25rem);
+      max-width: 700px; margin-bottom: 2rem;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeInUp .8s forwards .6s;
+    }
+    .btn-primary {
+      display: inline-block; padding: .75rem 2rem;
+      background: #fff; color: var(--clr-accent);
+      font-weight: 700; border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-decoration: none; transition: transform var(--transition);
+      opacity: 0; transform: translateY(20px);
+      animation: fadeInUp .8s forwards .9s;
+    }
+    .btn-primary:hover { transform: translateY(-4px); }
+    .btn-secondary {
+      display: inline-block; padding: .75rem 2rem;
+      background: transparent; color: #fff;
+      border: 2px solid #fff;
+      font-weight: 700; border-radius: var(--radius);
+      text-decoration: none; transition: all var(--transition);
+      margin-left: 1rem;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    /* Stats */
+    .hero-stats {
+      display: flex; gap: 2rem; margin: 2rem 0;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem; font-weight: 700; display: block;
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.8));
+      -webkit-background-clip: text; color: transparent;
+    }
+    .stat-label {
+      font-size: 0.9rem; opacity: 0.9;
+    }
+
+    /* WAVE SEPARATOR */
+    .hero svg {
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 120px;
+      fill: var(--clr-bg);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2rem; font-weight: 700; text-align: center;
+      margin-bottom: 3rem; position: relative;
+    }
+    .section-title::after {
+      content: ""; width: 80px; height: 3px;
+      background: var(--clr-primary);
+      position: absolute; bottom: -12px; left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* ANIMATION KEYFRAMES */
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GRID & CARDS */
+    .grid {
+      display: grid; gap: 2.5rem;
+    }
+
+    /* ABOUT */
+    .about-content {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .about-image img {
+      width: 100%; border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* FEATURES */
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    }
+    .feature-card {
+      background: var(--clr-surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: transform .3s, box-shadow .3s;
+      opacity: 0; transform: translateY(20px);
+      will-change: transform, opacity;
+    }
+    .feature-card.visible {
+      animation: fadeInUp .8s forwards;
+    }
+    .feature-card:hover {
+      transform: rotateX(5deg) rotateY(5deg) translateZ(10px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    }
+    .feature-card svg {
+      width: 48px; height: 48px; margin-bottom: 1rem;
+      fill: var(--clr-primary);
+    }
+    .feature-card h3 {
+      font-size: 1.25rem; margin-bottom: .75rem;
+    }
+    .feature-card p {
+      color: #475569; font-size: 1rem; line-height: 1.4;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    }
+    .service-card {
+      background: var(--clr-surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform .3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card h3 {
+      font-size: 1.25rem; margin-bottom: 1rem;
+      color: var(--clr-accent);
+    }
+    .service-card ul {
+      margin: 1rem 0; padding-left: 1.5rem;
+    }
+    .service-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    }
+    .testimonial-card {
+      background: var(--clr-surface);
+      padding: 2rem; border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .testimonial-author {
+      display: flex; align-items: center;
+      margin-top: 1.5rem;
+    }
+    .testimonial-author img {
+      width: 50px; height: 50px;
+      border-radius: 50%; margin-right: 1rem;
+    }
+
+    /* BLOG */
+    .blog-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    }
+    .blog-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform .3s;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+    .blog-card img {
+      width: 100%; height: 200px;
+      object-fit: cover;
+    }
+    .blog-content {
+      padding: 1.5rem;
+    }
+    .blog-excerpt {
+      margin: 1rem 0; color: #475569;
+    }
+    .read-more {
+      color: var(--clr-primary);
+      font-weight: 600; text-decoration: none;
+    }
+    .center-button {
+      text-align: center; margin-top: 3rem;
+    }
+
+    /* APPS */
+    .apps-showcase {
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    }
+    .app-card {
+      background: var(--clr-surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+      opacity: 0; transform: translateY(20px);
+      will-change: transform, opacity;
+    }
+    .app-card.visible {
+      animation: fadeInUp .8s forwards;
+    }
+    .app-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    }
+    .app-image {
+      height: 180px; display: flex;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(93,224,230,.2), rgba(128,96,224,.2));
+    }
+    .app-image img { max-height: 100px; }
+    .app-content { padding: 1.5rem; }
+    .app-title {
+      font-size: 1.25rem; font-weight: 600;
+      margin-bottom: .5rem;
+    }
+    .app-desc {
+      color: #475569; font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem 1rem;
+      color: #64748b; font-size: .9rem;
+      background: var(--clr-surface);
+      margin-top: 3rem;
+    }
+    footer a {
+      color: var(--clr-primary);
+      transition: color .3s;
+    }
+    footer a:hover { color: var(--clr-accent); }
+    .footer-links {
+      display: flex; justify-content: center;
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block; background: none;
+        border: none; font-size: 1.5rem;
+        cursor: pointer;
+      }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        background: var(--clr-surface);
+        backdrop-filter: blur(12px);
+        display:flex; flex-direction:column;
+        padding:4rem 2rem; gap:1.5rem;
+        transition: right var(--transition);
+      }
+      nav.active { right: 0; }
+      nav a { font-size: 1.125rem; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+      .about-content { grid-template-columns: 1fr; }
+      .btn-secondary { margin-left: 0; margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Team Abh Pk</a>
+    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="ai.html">AI Chat</a>
+      <a href="about.html">About</a>
+      <a href="apps.html">Apps</a>
+      <a href="services.html">Services</a>
+      <a href="team.html">Team</a>
+      <a href="careers.html">Careers</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Innovative Software Solutions & Gaming Excellence</h1>
+      <p>Team ABH PK is a premier technology and gaming organization based in Pakistan, delivering cutting-edge software solutions and dominating esports competitions since 2018.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label">Active Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Team Members</span>
+        </div>
+      </div>
+      <div>
+        <a href="apps.html" class="btn-primary">Explore Our Apps</a>
+        <a href="team.html" class="btn-secondary">Meet Our Team</a>
+      </div>
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 V40 Q600,120 1200,40 V0z"></path></svg>
+    </section>
+
+    <section aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">Our Story</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>From Passion to Profession</h3>
+          <p>Founded in 2018, Team ABH PK began as a small group of gaming enthusiasts who shared a common passion for competitive esports. What started as casual gaming sessions soon evolved into a professional organization as we began participating in national tournaments.</p>
+          <p>Recognizing the growing digital landscape in Pakistan, we expanded our focus to include software development and content creation. Today, we operate at the intersection of technology and entertainment, delivering innovative solutions while maintaining our competitive edge in esports.</p>
+          <h3>Our Mission & Values</h3>
+          <p>We believe in pushing boundaries and challenging the status quo. Our mission is to:</p>
+          <ul>
+            <li>Develop software that solves real-world problems</li>
+            <li>Foster Pakistan's growing esports community</li>
+            <li>Create educational content about technology and gaming</li>
+            <li>Provide opportunities for young talent in tech and gaming</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <img src="team-photo.jpg" alt="Team ABH PK members working together" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="services-title">
+      <h2 class="section-title" id="services-title">Our Services</h2>
+      <div class="grid services-grid">
+        <article class="service-card">
+          <h3>Custom Software Development</h3>
+          <p>We build tailored solutions for businesses of all sizes, from startups to enterprises. Our development process includes:</p>
+          <ul>
+            <li>Requirement analysis and planning</li>
+            <li>UI/UX design</li>
+            <li>Agile development methodology</li>
+            <li>Quality assurance testing</li>
+            <li>Deployment and maintenance</li>
+          </ul>
+          <p>Our expertise spans web applications, mobile apps, and desktop software across various industries.</p>
+        </article>
+        
+        <article class="service-card">
+          <h3>Esports Training & Coaching</h3>
+          <p>Leverage our competitive gaming experience with our professional coaching services:</p>
+          <ul>
+            <li>Individual skill assessment</li>
+            <li>Game strategy development</li>
+            <li>Team coordination training</li>
+            <li>Tournament preparation</li>
+            <li>Mental conditioning</li>
+          </ul>
+          <p>We specialize in PUBG Mobile, Free Fire, and Valorant coaching for players at all skill levels.</p>
+        </article>
+        
+        <article class="service-card">
+          <h3>Content Creation Services</h3>
+          <p>Our creative team produces engaging content for digital platforms:</p>
+          <ul>
+            <li>Game streaming and commentary</li>
+            <li>Software tutorial videos</li>
+            <li>Tech review content</li>
+            <li>Social media management</li>
+            <li>Brand promotion campaigns</li>
+          </ul>
+          <p>We help brands connect with gaming and tech audiences through authentic content.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <h2 class="section-title" id="features-title">What We Offer</h2>
+      <div class="grid features-grid">
+        <article class="feature-card" tabindex="0">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2L2 7v7a10 10 0 0020 0V7l-10-5z"/></svg>
+          <h3>Custom Software Development</h3>
+          <p>Tailored software crafted to fit your business processes and goals precisely.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          <h3>Cloud & Infrastructure</h3>
+          <p>Scalable cloud solutions and infrastructure services supporting modern workloads.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2" ry="2"/></svg>
+          <h3>Consulting & Strategy</h3>
+          <p>Expert advisory services to shape technology strategy and digital transformation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="apps-title">
+      <h2 class="section-title" id="apps-title">Our Notable Apps</h2>
+      <div class="grid apps-showcase">
+       <a href="mrearn.html" style="text-decoration:none;">
+          <article class="app-card" tabindex="0">
+          <div class="app-image" aria-label="Mrearn App">
+            <img src="app_icon.png" alt="Mrearn App Logo" loading="lazy"/>
+          </div>
+          <div class="app-content">
+            <h3 class="app-title">Mrearn</h3>
+            <p class="app-desc">An innovative earning application where users can listen to Holy Books and earn rewards by watching advertisements. Our unique platform combines spiritual content with modern monetization.</p>
+          </div>
+        </article>
+       </a>
+        <a href="ab2d.html" style="text-decoration:none;">
+          <article class="app-card" tabindex="0">
+          <div class="app-image" aria-label="Ab2d Engine">
+            <img src="blanklogo.png" alt="Ab2d Engine Logo" loading="lazy"/>
+          </div>
+          <div class="app-content">
+            <h3 class="app-title">Ab2d Engine</h3>
+            <p class="app-desc">A revolutionary tool for developers that transforms ideas into software using visual scripting. No coding experience required to create functional prototypes and applications.</p>
+          </div>
+        </article>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="testimonials-title">
+      <h2 class="section-title" id="testimonials-title">What Our Clients Say</h2>
+      <div class="grid testimonials-grid">
+        <article class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"Team ABH PK developed a custom inventory management system for our retail chain that has saved us countless hours and reduced errors by 90%. Their attention to detail and post-launch support has been exceptional."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="client1.jpg" alt="Ahmed Raza" loading="lazy">
+            <div>
+              <h4>Ahmed Raza</h4>
+              <p>CEO, Retail Solutions Pakistan</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The gaming coaching I received from ABH PK took my skills to the next level. I went from being a casual player to competing in national tournaments within 6 months. Their strategic approach is unmatched."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="client2.jpg" alt="Fatima Khan" loading="lazy">
+            <div>
+              <h4>Fatima Khan</h4>
+              <p>Professional Esports Player</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="blog-title">
+      <h2 class="section-title" id="blog-title">Latest From Our Blog</h2>
+      <div class="grid blog-grid">
+        <article class="blog-card">
+          <img src="blog1.jpg" alt="Esports in Pakistan" loading="lazy">
+          <div class="blog-content">
+            <h3>The Future of Esports in Pakistan</h3>
+            <p class="blog-excerpt">An in-depth look at the growing esports scene in Pakistan and opportunities for aspiring professional gamers. We analyze market trends and career paths in competitive gaming.</p>
+            <a href="blog/future-esports-pakistan.html" class="read-more">Read More</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="blog2.jpg" alt="Developer tools" loading="lazy">
+          <div class="blog-content">
+            <h3>5 Essential Tools for App Developers</h3>
+            <p class="blog-excerpt">Our team shares their must-have tools and resources that streamline the app development process and boost productivity. Learn about the tools we use daily in our workflow.</p>
+            <a href="blog/developer-tools.html" class="read-more">Read More</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="blog3.jpg" alt="Gaming and studies" loading="lazy">
+          <div class="blog-content">
+            <h3>Balancing Gaming and Studies</h3>
+            <p class="blog-excerpt">Practical tips for students who want to pursue competitive gaming without compromising their education. Time management strategies from our pro players who excelled academically.</p>
+            <a href="blog/gaming-studies-balance.html" class="read-more">Read More</a>
+          </div>
+        </article>
+      </div>
+      <div class="center-button">
+        <a href="blog.html" class="btn-primary">View All Articles</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="careers.html">Careers</a>
+    </div>
+    <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
+    <p>
+      Follow us on
+      <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>,
+      <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>,
+      <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>,
+      <a href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </p>
+  </footer>
+
+  <script>
+    // Menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .app-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
