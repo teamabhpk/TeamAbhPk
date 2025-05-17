@@ -168,6 +168,18 @@
     }
     .chat-form button:active {transform:scale(0.98);background:#8060e0;}
     .chat-form button:disabled {opacity:0.6;background:#e0e2ec;color:#bbb;cursor:not-allowed;}
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
     @media (max-width:700px) {.chat-log,.chat-form{max-width:99vw;}}
     @media (max-width:400px) {.chat-form,.chat-log{padding-left:.2rem;padding-right:.2rem;}}
   </style>
@@ -192,23 +204,33 @@
       <div class="chat-log" id="chat-log" aria-live="polite" aria-atomic="false"></div>
       <form class="chat-form" id="chat-form" autocomplete="off">
         <textarea id="user-input" placeholder="Type your message..." rows="1" required></textarea>
-        <button id="send-button" type="submit" aria-label="Send message">Send</button>
+        <button id="send-button" type="submit" aria-label="Send message">
+          <span id="button-text">Send</span>
+          <span id="button-spinner" class="loading-spinner" style="display: none;"></span>
+        </button>
       </form>
     </section>
   </main>
   <script>
-    // Set your backend endpoint here, e.g. "https://your-domain.com/api/chat"
-    const ENDPOINT = "/api/chat";
-
-    // Hamburger menu toggle
+    // DOM Elements
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
+    const chatLog = document.getElementById('chat-log');
+    const chatForm = document.getElementById('chat-form');
+    const sendButton = document.getElementById('send-button');
+    const userInput = document.getElementById('user-input');
+    const buttonText = document.getElementById('button-text');
+    const buttonSpinner = document.getElementById('button-spinner');
+
+    // Hamburger menu toggle
     menuToggle.addEventListener('click', () => {
       mainNav.classList.toggle('show');
       const expanded = menuToggle.getAttribute('aria-expanded') === "true";
       menuToggle.setAttribute('aria-expanded', !expanded);
       menuToggle.setAttribute('aria-label', !expanded ? "Close navigation" : "Open navigation");
     });
+
+    // Close mobile menu when clicking nav links
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         if(window.innerWidth < 801) {
@@ -219,17 +241,13 @@
       });
     });
 
-    // Responsive textarea height
-    const userInput = document.getElementById('user-input');
+    // Auto-resize textarea
     userInput.addEventListener('input', function() {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
     });
 
-    // Chat logic: send to your backend
-    const chatLog = document.getElementById('chat-log');
-    const chatForm = document.getElementById('chat-form');
-    const sendButton = document.getElementById('send-button');
+    // Append message to chat log
     function appendMessage(content, className) {
       const msg = document.createElement('p');
       msg.className = 'chat-message ' + className;
@@ -237,48 +255,71 @@
       chatLog.appendChild(msg);
       chatLog.scrollTop = chatLog.scrollHeight;
     }
+
+    // Initialize Google GenAI
+    let model;
+    async function initAI() {
+      try {
+        const { GoogleGenAI } = window.GoogleGenAI;
+        const genAI = new GoogleGenAI({ 
+          // IMPORTANT: In production, use a backend service instead of exposing API keys
+          apiKey: "AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A" // Replace with your API key or use a backend
+        });
+        model = await genAI.getGenerativeModel({ model: "gemini-pro" });
+        appendMessage("AI: Hello! How can I help you today?", 'ai-message');
+      } catch (error) {
+        console.error("Failed to initialize AI:", error);
+        appendMessage("AI: Error initializing AI service. Please refresh the page.", 'ai-message');
+      }
+    }
+
+    // Handle chat form submission
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const userMessage = userInput.value.trim();
       if (!userMessage) return;
+      
+      // Display user message
       appendMessage(`You: ${userMessage}`, 'user-message');
       userInput.value = '';
       userInput.style.height = 'auto';
+      
+      // Disable send button and show loading state
       sendButton.disabled = true;
+      buttonText.textContent = "Sending";
+      buttonSpinner.style.display = "inline-block";
+
       try {
-        const response = await fetch(ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userMessage })
-        });
-        const data = await response.json();
-        appendMessage(`AI: ${data.reply}`, 'ai-message');
+        if (!model) {
+          throw new Error("AI model not initialized");
+        }
+        
+        // Generate AI response
+        const result = await model.generateContent(userMessage);
+        const response = await result.response;
+        const text = await response.text();
+        
+        // Display AI response
+        appendMessage(`AI: ${text}`, 'ai-message');
       } catch (error) {
-        appendMessage("Error: Unable to connect to the AI. " + error, 'ai-message');
-        console.error(error);
+        console.error("Chat error:", error);
+        appendMessage("AI: Sorry, I encountered an error. Please try again.", 'ai-message');
+      } finally {
+        // Re-enable send button
+        sendButton.disabled = false;
+        buttonText.textContent = "Send";
+        buttonSpinner.style.display = "none";
       }
-      sendButton.disabled = false;
     });
-    const { GoogleGenAI } = window.GoogleGenAI;
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A" });
-
-async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: "Explain how AI works in a few words",
-  });
-  console.log(response.text);
-}
-
-await main();
     // Keyboard shortcut: Ctrl+Enter or Cmd+Enter to send
     userInput.addEventListener('keydown', function(e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         sendButton.click();
       }
     });
-    // Accessibility: Hide nav when resizing to desktop
+
+    // Hide mobile menu when resizing to desktop
     window.addEventListener('resize', () => {
       if(window.innerWidth > 800) {
         mainNav.classList.remove('show');
@@ -286,6 +327,9 @@ await main();
         menuToggle.setAttribute('aria-label', "Open navigation");
       }
     });
+
+    // Initialize the AI when page loads
+    window.addEventListener('DOMContentLoaded', initAI);
   </script>
 </body>
 </html>
