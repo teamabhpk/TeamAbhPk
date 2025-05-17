@@ -1,276 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<link rel="icon" href="blanklogo.png" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Privacy Policy - Team Abh Pk</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  :root {
-    --primary-color: #48bb78;
-    --primary-dark: #2f855a;
-    --text-color: #2c3e50;
-    --text-light: #4a5568;
-    --bg-dark: #1a202c;
-    --bg-light: #f9fafb;
-    --white: #ffffff;
-    --transition: all 0.3s ease;
-  }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-light);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-  
-  /* Header & Navigation */
-  header {
-    background: var(--bg-dark);
-    color: var(--white);
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  header .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem;
-  }
-  
-  header a.logo {
-    font-weight: 700;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    color: var(--primary-color);
-    text-decoration: none;
-    letter-spacing: 1px;
-  }
-  
-  /* Mobile Menu Button */
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav li {
-    margin-left: 1.5rem;
-  }
-  
-  nav a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: var(--transition);
-    padding: 0.5rem;
-  }
-  
-  nav a:hover, nav a:focus {
-    color: var(--primary-color);
-    outline: none;
-  }
-  
-  /* Privacy Policy Content */
-  .privacy-container {
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-  }
-  
-  .privacy-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  .privacy-header h1 {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    color: var(--bg-dark);
-    margin-bottom: 1rem;
-  }
-  
-  .privacy-header p {
-    color: var(--text-light);
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  .privacy-content {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  }
-  
-  .privacy-section {
-    margin-bottom: 2.5rem;
-  }
-  
-  .privacy-section h2 {
-    color: var(--primary-dark);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--primary-color);
-  }
-  
-  .privacy-section h3 {
-    color: var(--bg-dark);
-    font-size: 1.2rem;
-    margin: 1.5rem 0 0.75rem;
-  }
-  
-  .privacy-section p, .privacy-section ul {
-    margin-bottom: 1rem;
-    color: var(--text-light);
-  }
-  
-  .privacy-section ul {
-    padding-left: 1.5rem;
-  }
-  
-  .privacy-section li {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Footer */
-  footer {
-    background: var(--bg-dark);
-    color: #a0aec0;
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-  
-  footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: var(--transition);
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
-  footer .footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  /* Mobile Navigation */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-      z-index: 1001;
+  <meta charset="UTF-8" />
+  <link rel="icon" href="blanklogo.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Team Abh Pk</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --clr-primary: #5de0e6;
+      --clr-accent: #8060e0;
+      --clr-bg: #f0f4f8;
+      --clr-surface: rgba(255, 255, 255, 0.6);
+      --clr-text: #1f2937;
+      --clr-text-light: #4b5563;
+      --transition: 0.5s ease;
+      --radius: 1.25rem;
+      --shadow: 0 20px 40px rgba(0,0,0,0.05);
     }
     
-    nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: var(--bg-dark);
-      padding: 5rem 2rem 2rem;
-      transition: right 0.3s ease;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(12px);
+      background: var(--clr-surface);
       z-index: 1000;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
-    nav.active {
-      right: 0;
+    .logo {
+      font-size: 1.5rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      -webkit-background-clip: text; color: transparent;
+      text-decoration: none;
     }
-    
-    nav ul {
-      flex-direction: column;
-    }
-    
-    nav li {
-      margin: 0.5rem 0;
-    }
-    
+    nav { display: flex; gap: 1.5rem; }
     nav a {
-      display: block;
-      padding: 0.75rem;
-      border-radius: 4px;
+      position: relative; padding: .5rem; font-weight: 500;
+      color: var(--clr-text); text-decoration: none;
+      transition: color .3s;
+    }
+    nav a::after {
+      content: ""; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--clr-primary);
+      transition: width var(--transition);
+    }
+    nav a:hover { color: var(--clr-primary); }
+    nav a:hover::after { width: 100%; }
+    nav a[aria-current="page"] {
+      color: var(--clr-accent);
+      font-weight: 600;
+    }
+    .menu-toggle {
+      display: none; background: none;
+      border: none; font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px; margin: 0 auto;
     }
     
-    nav a:hover {
-      background: rgba(255,255,255,0.1);
+    /* PRIVACY POLICY */
+    .privacy-header {
+      text-align: center;
+      margin-bottom: 4rem;
     }
-    
-    .privacy-content {
-      padding: 1.5rem;
+    .privacy-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      -webkit-background-clip: text; color: transparent;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .privacy-container {
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .privacy-content {
-      padding: 1.25rem;
-    }
-    
-    .privacy-section h2 {
-      font-size: 1.3rem;
-    }
-    
-    .privacy-section h3 {
+    .privacy-header p {
+      color: var(--clr-text-light);
       font-size: 1.1rem;
     }
-  }
-</style>
+    
+    .privacy-content {
+      background: var(--clr-surface);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 3rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .privacy-section {
+      margin-bottom: 3rem;
+    }
+    .privacy-section h2 {
+      color: var(--clr-accent);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--clr-primary);
+    }
+    .privacy-section h3 {
+      color: var(--clr-text);
+      font-size: 1.2rem;
+      margin: 2rem 0 1rem;
+    }
+    .privacy-section p, .privacy-section ul {
+      margin-bottom: 1.5rem;
+      color: var(--clr-text-light);
+    }
+    .privacy-section ul {
+      padding-left: 2rem;
+    }
+    .privacy-section li {
+      margin-bottom: 0.75rem;
+    }
+    .privacy-section a {
+      color: var(--clr-primary);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .privacy-section a:hover {
+      color: var(--clr-accent);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--clr-text-light); font-size: .9rem;
+      background: var(--clr-surface);
+      margin-top: 3rem;
+    }
+    footer a {
+      color: var(--clr-primary);
+      transition: color var(--transition);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--clr-accent); }
+    .footer-links {
+      display: flex; justify-content: center;
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        position: fixed; top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        background: var(--clr-surface);
+        backdrop-filter: blur(12px);
+        display:flex; flex-direction:column;
+        padding:4rem 2rem; gap:1.5rem;
+        transition: right var(--transition);
+      }
+      nav.active { right: 0; }
+      nav a { font-size: 1.125rem; }
+      
+      main {
+        padding: 6rem 1rem 3rem;
+      }
+      
+      .privacy-content {
+        padding: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem;
+      }
+      
+      .privacy-content {
+        padding: 1.5rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <div class="container">
-    <a href="index.html" class="logo" aria-label="Team Abh Pk">Team Abh Pk</a>
-    <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
-    <nav aria-label="Primary Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <a href="ai.html" aria-current="page">Ai Chat</a>
-        <li><a href="about.html">About</a></li>
-        <li><a href="apps.html">Apps</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
-      </ul>
-    </nav>
-  </div>
+  <a href="index.html" class="logo">Team Abh Pk</a>
+  <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="ai.html">AI Chat</a>
+    <a href="about.html">About</a>
+    <a href="apps.html">Apps</a>
+    <a href="services.html">Services</a>
+    <a href="team.html">Team</a>
+    <a href="careers.html">Careers</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html">FAQ</a>
+    <a href="privacy.html" aria-current="page">Privacy</a>
+  </nav>
 </header>
 
 <main class="privacy-container" role="main">
@@ -346,26 +286,36 @@
 </main>
 
 <footer>
-  <div class="footer-content">
-    <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
-    <p>Follow us on
-      <a href="#" aria-label="Team Abh Pk Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>,
-      <a href="#" aria-label="Team Abh Pk LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="#" aria-label="Team Abh Pk Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="careers.html">Careers</a>
   </div>
+  <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
+  <p>
+    Follow us on
+    <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>,
+    <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>,
+    <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>,
+    <a href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </p>
 </footer>
 
 <script>
-  // Mobile menu toggle functionality
-  document.querySelector('.menu-toggle').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
+  // Menu toggle functionality
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('nav');
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
   });
-  
-  // Close menu when clicking on a link (for mobile)
+
+  // Close menu when clicking on a link
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', () => {
-      document.querySelector('nav').classList.remove('active');
+      nav.classList.remove('active');
+      menuToggle.textContent = '☰';
     });
   });
 </script>
