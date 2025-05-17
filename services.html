@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Team Abh Pk</title>
+<title>Team Abh PK – Software & Digital Services</title>
+<meta name="description" content="Discover the full range of software, app development, design, and consulting services offered by Team Abh PK. Empowering your business with tailor-made technology solutions in Pakistan and beyond.">
+<meta name="keywords" content="Team Abh PK, software services, app development, web design, Pakistan, technology, consulting, UI/UX, digital solutions, support, innovation">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --primary-color: #5de0e6;
     --accent-color: #8060e0;
@@ -21,7 +18,6 @@
     --transition: all 0.3s ease;
     --radius: 1.25rem;
   }
-
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-color);
@@ -29,8 +25,6 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-
-  /* Header */
   header {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
@@ -44,7 +38,6 @@
     align-items: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
-
   header a.logo {
     font-weight: 700;
     font-size: 1.5rem;
@@ -53,7 +46,6 @@
     -webkit-background-clip: text;
     text-decoration: none;
   }
-
   .menu-toggle {
     display: none;
     background: none;
@@ -66,7 +58,6 @@
     top: 1rem;
     right: 2rem;
   }
-
   nav ul {
     list-style: none;
     display: flex;
@@ -74,11 +65,7 @@
     padding: 0;
     gap: 1.5rem;
   }
-
-  nav li {
-    margin: 0;
-  }
-
+  nav li { margin: 0; }
   nav a {
     color: var(--text-color);
     text-decoration: none;
@@ -87,17 +74,9 @@
     position: relative;
     transition: color 0.3s;
   }
-
-  nav a:hover {
-    color: var(--primary-color);
-  }
-
-  /* Mobile Menu */
+  nav a:hover { color: var(--primary-color); }
   @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-    }
-
+    .menu-toggle { display: block; }
     nav ul {
       flex-direction: column;
       display: none;
@@ -110,21 +89,15 @@
       text-align: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
-
-    nav ul.active {
-      display: flex;
-    }
-
+    nav ul.active { display: flex; }
     nav a {
       display: block;
       padding: 0.5rem;
       margin: 0.5rem 0;
     }
   }
-
-  /* Hero Section */
   .hero {
-    height: 50vh;
+    min-height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,27 +106,26 @@
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: var(--white);
     position: relative;
+    padding-bottom: 2rem;
   }
-
   .hero h1 {
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1rem 0;
   }
-
   .hero p {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
     max-width: 700px;
     margin: 0 auto;
   }
-
-  /* Main Content */
   main {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(80, 100, 144, 0.08);
   }
-
   .section-title {
     text-align: center;
     font-size: 2rem;
@@ -162,7 +134,6 @@
     color: var(--text-color);
     position: relative;
   }
-
   .section-title::after {
     content: '';
     display: block;
@@ -172,81 +143,111 @@
     margin: 0.5rem auto 0;
     border-radius: 2px;
   }
-
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    margin-bottom: 2rem;
   }
-
   .service-card {
     background: var(--white);
-    padding: 2rem;
+    padding: 2rem 1.5rem;
     border-radius: var(--radius);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
-
   .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 14px 40px rgba(72, 187, 120, 0.45);
+    box-shadow: 0 14px 40px rgba(72, 187, 120, 0.15);
   }
-
   .service-icon {
     width: 60px;
     height: 60px;
     margin-bottom: 1rem;
     fill: var(--primary-color);
   }
-
   .service-title {
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin-bottom: 0.75rem;
-    color: var(--text-color);
+    color: var(--accent-color);
   }
-
   .service-desc {
     color: #4a5568;
     font-size: 1rem;
     line-height: 1.5;
   }
-
-  /* Footer */
+  .service-list {
+    margin: 1rem 0 0 1.2rem;
+    color: #405170;
+    font-size: 0.98rem;
+  }
+  .details-block {
+    margin: 2.5rem 0 2rem 0;
+    padding: 1.5rem 1.5rem;
+    background: #f2f8fd;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(80, 100, 144, 0.05);
+  }
+  .details-block h2 {
+    color: var(--accent-color);
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+  .details-block ul {
+    margin-left: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .details-block li {
+    margin-bottom: 0.3rem;
+  }
+  .details-block strong {
+    color: var(--primary-color);
+  }
+  .cta {
+    text-align: center;
+    margin: 2.5rem 0 1.5rem 0;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    background: var(--primary-color);
+    color: var(--white);
+    font-weight: 700;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.09);
+    text-decoration: none;
+    transition: transform var(--transition);
+    margin-top: 1.1rem;
+  }
+  .btn-primary:hover { transform: translateY(-4px); background: var(--accent-color);}
   footer {
     background: var(--bg-color);
     color: #64748b;
     padding: 2rem;
     text-align: center;
+    margin-top: 2rem;
   }
-
   footer a {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition);
   }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-
 <header>
-  <a href="index.html" class="logo">Team Abh Pk</a>
+  <a href="index.html" class="logo">Team Abh PK</a>
   <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <a href="ai.html" aria-current="page">Ai Chat</a>
+      <a href="ai.html">Ai Chat</a>
       <li><a href="about.html">About</a></li>
       <li><a href="apps.html">Apps</a></li>
       <li><a href="services.html" aria-current="page">Services</a></li>
@@ -262,38 +263,146 @@
 
 <section class="hero">
   <h1>Our Services</h1>
-  <p>Discover how we can help your business grow with innovative software solutions.</p>
+  <p>
+    Team Abh PK offers a comprehensive range of digital, software, and consulting services to help your business grow, innovate, and succeed in the fast-changing digital landscape. We serve startups, SMEs, enterprises, and individuals in Pakistan and worldwide.
+  </p>
 </section>
 
 <main>
-  <h1 class="section-title">Explore Our Services</h1>
+  <h1 class="section-title">What We Offer</h1>
   <div class="services-grid">
     <article class="service-card">
-      <svg class="service-icon" viewBox="0 0 24 24">
-        <path d="M4 4h16v16H4z"/>
-      </svg>
+      <svg class="service-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
       <h2 class="service-title">Custom Software Development</h2>
-      <p class="service-desc">We will develop custom software for you.</p>
+      <p class="service-desc">
+        We build tailored software applications to automate your business, solve unique challenges, and scale your operations. Our solutions use modern web and mobile frameworks, and are designed for security, speed, and reliability.
+      </p>
+      <ul class="service-list">
+        <li>Web, desktop, and mobile app development</li>
+        <li>Business automation tools</li>
+        <li>Integration with existing systems</li>
+        <li>Ongoing support & upgrades</li>
+      </ul>
     </article>
     <article class="service-card">
-      <svg class="service-icon" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/>
-      </svg>
-      <h2 class="service-title">Multiple revisions</h2>
-      <p class="service-desc">We will you multiple revision .</p>
+      <svg class="service-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+      <h2 class="service-title">UI/UX & Graphic Design</h2>
+      <p class="service-desc">
+        We design beautiful, intuitive, and accessible interfaces for web/mobile apps and digital products. Our creative team ensures your brand stands out and your users love the experience.
+      </p>
+      <ul class="service-list">
+        <li>UI/UX design for all platforms</li>
+        <li>Branding & identity design</li>
+        <li>Wireframes, prototypes, and user flows</li>
+        <li>Design audits and improvements</li>
+      </ul>
     </article>
     <article class="service-card">
-      <svg class="service-icon" viewBox="0 0 24 24">
-        <path d="M3 5h18v14H3z"/>
-      </svg>
-      <h2 class="service-title">UI/UX Design</h2>
-      <p class="service-desc">Beautiful and user-friendly designs to maximize engagement.</p>
+      <svg class="service-icon" viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/></svg>
+      <h2 class="service-title">Mobile App Development</h2>
+      <p class="service-desc">
+        Launch your idea on Android or iOS! We build secure, scalable, and engaging mobile apps for businesses, startups, and creators—from concept to store launch and beyond.
+      </p>
+      <ul class="service-list">
+        <li>Android & iOS native and hybrid apps</li>
+        <li>App store deployment & updates</li>
+        <li>Maintenance & analytics</li>
+      </ul>
     </article>
+    <article class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><rect x="8" y="8" width="8" height="8"/></svg>
+      <h2 class="service-title">Website Design & Development</h2>
+      <p class="service-desc">
+        Establish your digital presence with a modern, responsive website. From company portfolios to e-commerce and custom portals, we cover it all—optimized for speed, SEO, and conversions.
+      </p>
+      <ul class="service-list">
+        <li>Business sites, blogs, e-commerce</li>
+        <li>SEO optimization & analytics</li>
+        <li>WordPress, custom, or static sites</li>
+        <li>Hosting setup & migration</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2l4 4-4 4-4-4z"/><rect x="4" y="16" width="16" height="2"/></svg>
+      <h2 class="service-title">AI, Automation & Bots</h2>
+      <p class="service-desc">
+        Supercharge your business with AI-powered tools, chatbots, and automation. We build smart assistants, process automations, and predictive systems tailored for your needs.
+      </p>
+      <ul class="service-list">
+        <li>AI chatbots & virtual assistants</li>
+        <li>Business workflow automation</li>
+        <li>Custom AI model integration</li>
+        <li>Data extraction & reporting</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/><path d="M8 8l8 8"/></svg>
+      <h2 class="service-title">Maintenance & Support</h2>
+      <p class="service-desc">
+        Enjoy peace of mind with ongoing support, bug fixes, updates, and security patches for all your digital products. We keep your tech running smoothly, so you can focus on your business.
+      </p>
+      <ul class="service-list">
+        <li>Monthly/yearly support plans</li>
+        <li>Performance monitoring</li>
+        <li>Security & backups</li>
+        <li>Rapid response to issues</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+      <h2 class="service-title">Consulting & Training</h2>
+      <p class="service-desc">
+        Get expert advice on tech strategy, digital transformation, and upskilling your team. We offer consulting, code reviews, and hands-on training for staff and students.
+      </p>
+      <ul class="service-list">
+        <li>Tech consulting for businesses</li>
+        <li>Workshops, bootcamps, and training</li>
+        <li>Code audits and reviews</li>
+        <li>Startup & MVP guidance</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><path d="M9 14l2 2 4-4"/></svg>
+      <h2 class="service-title">Multiple Revisions & Client Satisfaction</h2>
+      <p class="service-desc">
+        We work closely with you, offering multiple rounds of revisions to ensure you get the perfect solution. Your input and feedback matter at every stage.
+      </p>
+      <ul class="service-list">
+        <li>Transparent communication</li>
+        <li>Revisions until you’re satisfied</li>
+        <li>Dedicated project manager</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="details-block">
+    <h2>Why Choose Team Abh PK?</h2>
+    <ul>
+      <li><strong>Experienced professionals:</strong> Decades of combined experience in tech, design, and business.</li>
+      <li><strong>Client-first:</strong> We listen to your needs and tailor every project for you.</li>
+      <li><strong>Transparent & ethical:</strong> No hidden fees, no scams, and full honesty in our work.</li>
+      <li><strong>Cutting-edge tech:</strong> We use the latest frameworks and tools for best results.</li>
+      <li><strong>Community & learning:</strong> We give back through open-source, workshops, and mentorship.</li>
+      <li><strong>Serving Pakistan & beyond:</strong> Urdu & English support, flexible pricing, remote & onsite options.</li>
+    </ul>
+  </div>
+
+  <div class="cta">
+    <h2>Ready to take your idea further?</h2>
+    <p>
+      <a href="contact.html" class="btn-primary">Contact us for a free consultation &rarr;</a>
+    </p>
+    <p>
+      <a href="about.html">Learn more about our story</a> | 
+      <a href="team.html">Meet the team</a> | 
+      <a href="apps.html">See our products</a> | 
+      <a href="faq.html">FAQ</a>
+    </p>
   </div>
 </main>
 
 <footer>
-  <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
+  <p>&copy;2025 Team Abh PK. All rights reserved.</p>
   <p>
     Follow us on
     <a href="#" target="_blank">Twitter</a>,
@@ -301,12 +410,10 @@
     <a href="#" target="_blank">Facebook</a>
   </p>
 </footer>
-
 <script>
   document.querySelector('.menu-toggle').addEventListener('click', function() {
     document.querySelector('nav ul').classList.toggle('active');
   });
 </script>
-
 </body>
 </html>
