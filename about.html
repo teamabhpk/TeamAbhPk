@@ -5,20 +5,20 @@
 <link rel="icon" href="blanklogo.png" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About Team ABH PK – Our Mission, Vision & Members</title>
-<meta name="description" content="Learn about Team ABH PK's journey, mission, and the talented gamers and content creators behind our success in Pakistan's esports scene.">
-<meta name="keywords" content="about Team ABH PK, gaming team members, esports Pakistan, Team ABH history">
+<meta name="description" content="Discover the story behind Team ABH PK – our mission, vision, achievements, and the talented members who drive innovation in Pakistan's tech scene.">
+<meta name="keywords" content="about Team ABH PK, software team Pakistan, Team ABH PK members, software development, tech innovators, Abdul Basit, Mohsin Abbas">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://teamabhpk.me/about">
 <meta property="og:title" content="About Team ABH PK – Our Mission, Vision & Members">
-<meta property="og:description" content="Learn about Team ABH PK's journey, mission, and the talented gamers behind our success.">
+<meta property="og:description" content="Learn about Team ABH PK's journey, mission, and the talented innovators behind our success.">
 <meta property="og:image" content="https://teamabhpk.me/images/about-team-abh-pk.jpg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Team ABH PK – Our Mission, Vision & Members">
-<meta name="twitter:description" content="Learn about Team ABH PK's journey and the talented gamers behind our success.">
+<meta name="twitter:description" content="Learn about Team ABH PK's journey and the talented innovators behind our success.">
 <meta name="twitter:image" content="https://teamabhpk.me/images/about-team-abh-pk.jpg">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
@@ -46,7 +46,6 @@
     overflow-x: hidden;
   }
 
-  /* Header */
   header {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
@@ -107,12 +106,10 @@
     color: var(--primary-color);
   }
 
-  /* Mobile Menu */
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
     }
-
     nav ul {
       flex-direction: column;
       display: none;
@@ -124,11 +121,9 @@
       padding: 1rem 0;
       text-align: center;
     }
-
     nav ul.active {
       display: flex;
     }
-
     nav a {
       display: block;
       padding: 0.5rem;
@@ -136,9 +131,8 @@
     }
   }
 
-  /* Hero Background */
   .hero {
-    height: 100vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -187,18 +181,19 @@
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards 0.9s;
   }
+  .btn-primary:hover { transform: translateY(-4px); }
 
-  .btn-primary:hover {
-    transform: translateY(-4px);
-  }
-
-  /* Main Content */
   main {
     max-width: 1200px;
     margin: 3rem auto;
     padding: 0 1rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px rgba(80, 100, 144, 0.08);
   }
-
+  .about-section {
+    padding: 2rem 1rem 3rem 1rem;
+  }
   .section-title {
     text-align: center;
     font-size: 2rem;
@@ -207,7 +202,6 @@
     color: var(--text-color);
     position: relative;
   }
-
   .section-title::after {
     content: '';
     display: block;
@@ -217,26 +211,102 @@
     margin: 0.5rem auto 0;
     border-radius: 2px;
   }
-
-  /* Footer */
+  .about-section h2 {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+  }
+  .about-section ul, .about-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-section li {
+    margin-bottom: 0.5rem;
+  }
+  .about-section .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-section .team-member {
+    background: #f3f4f6;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(80, 100, 144, 0.07);
+  }
+  .about-section .team-member img {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.7rem;
+    border: 2px solid var(--primary-color);
+  }
+  .about-section .member-name {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .about-section .member-role {
+    font-size: 1rem;
+    color: #607080;
+    margin-bottom: 0.4rem;
+  }
+  .about-section .member-bio {
+    font-size: 0.96rem;
+    color: #415170;
+  }
+  .about-section blockquote {
+    margin: 2rem auto 1.5rem auto;
+    padding: 1.2rem 2rem;
+    background: #e1f5fd;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 0.7rem;
+    font-style: italic;
+    color: #405170;
+    max-width: 700px;
+  }
+  .about-section .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 2rem 0;
+    text-align: center;
+  }
+  .about-section .stat {
+    background: #f9fafb;
+    border-radius: 0.7rem;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 1px 8px rgba(128, 96, 224, 0.08);
+  }
+  .about-section .stat h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+  .about-section .stat p {
+    margin: 0;
+    color: #607080;
+  }
   footer {
     background: var(--bg-color);
     color: #64748b;
     padding: 2rem;
     text-align: center;
+    margin-top: 2rem;
   }
-
   footer a {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition);
   }
-
   footer a:hover {
     text-decoration: underline;
   }
-
-  /* Animations */
   @keyframes fadeInUp {
     to {
       opacity: 1;
@@ -268,15 +338,100 @@
 </header>
 
 <section class="hero">
-  <h1>Innovative Software Solutions</h1>
-  <p>Crafting powerful software to accelerate growth and optimize operations.</p>
-  <a href="apps.html" class="btn-primary">Discover More</a>
+  <h1>About Team Abh PK</h1>
+  <p>Pioneering technology, empowering people, and building a brighter digital future for all.</p>
+  <a href="apps.html" class="btn-primary">Discover Our Apps</a>
 </section>
 
 <main>
   <section class="about-section">
-    <h1 class="section-title">About Team Abh Pk</h1>
-    <p>Founded to create innovative software solutions that are accessible to everyone, fostering growth and equality in technology.</p>
+    <h1 class="section-title">Our Story</h1>
+    <p>Team Abh PK was founded with a vision to make technology accessible, transformative, and empowering for everyone. Over the years, we've grown from a passionate group of creators into a diverse, expert-led company delivering innovative software and digital solutions throughout Pakistan and globally.</p>
+    <blockquote>
+      “We believe technology is a bridge to opportunity. Our mission is to make that bridge sturdy, inclusive, and open to all.”<br><br>– Team Abh PK Founders
+    </blockquote>
+    
+    <h2>Our Mission</h2>
+    <p>To design and deliver innovative, user-friendly software and digital products that help people and organizations achieve more. We’re committed to growing Pakistan’s digital landscape through skill development, creative thinking, and a relentless pursuit of excellence.</p>
+
+    <h2>Our Vision</h2>
+    <p>To be recognized as a top software and digital innovation team in the region, known for our integrity, creativity, and impact. We imagine a future where every individual and business can benefit from digital transformation and technology-driven growth.</p>
+  
+    <div class="stats-grid">
+      <div class="stat">
+        <h3>20+</h3>
+        <p>Years of Industry Experience</p>
+      </div>
+      <div class="stat">
+        <h3>10+</h3>
+        <p>Software Products</p>
+      </div>
+      <div class="stat">
+        <h3>30,000+</h3>
+        <p>Active Users</p>
+      </div>
+      <div class="stat">
+        <h3>25</h3>
+        <p>Team Members</p>
+      </div>
+    </div>
+
+    <h2>What We Do</h2>
+    <ul>
+      <li>Develop top-quality web, desktop, and mobile applications.</li>
+      <li>Offer SaaS solutions, automation tools, and cloud integrations.</li>
+      <li>Create digital content for education, productivity, and entertainment.</li>
+      <li>Support startups and SMEs in digital transformation.</li>
+      <li>Host workshops, mentorship, and coding bootcamps for the community.</li>
+      <li>Engage in open-source projects and knowledge sharing.</li>
+    </ul>
+
+    <h2>Our Core Values</h2>
+    <ol>
+      <li><strong>Innovation:</strong> Always strive to improve and create unique solutions.</li>
+      <li><strong>Integrity:</strong> Conduct all business with transparency and honesty.</li>
+      <li><strong>Inclusion:</strong> Promote diversity and equal opportunity in tech.</li>
+      <li><strong>Learning:</strong> Commit to continuous growth and skill development.</li>
+      <li><strong>Community:</strong> Give back through education, mentorship, and collaboration.</li>
+    </ol>
+
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <article class="team-member">
+        <img src="ceo.jpg" alt="Abdul Basit" class="member-photo" />
+        <h2 class="member-name">Abdul Basit</h2>
+        <p class="member-role">Founder & CEO</p>
+        <p class="member-bio">Visionary leader with over 20 years in the software industry, passionate about innovation and strategic growth.</p>
+      </article>
+      <article class="team-member">
+        <img src="mohsin.jpg" alt="Mohsin Abbas" class="member-photo" />
+        <h2 class="member-name">Mohsin Abbas</h2>
+        <p class="member-role">Chief Technology Officer</p>
+        <p class="member-bio">Tech expert driving our technology strategy and overseeing the development of next-gen software products.</p>
+      </article>
+      <!-- Add more team members here as needed, following the same structure -->
+    </div>
+    <p>Our team also includes talented developers, designers, QA engineers, marketers, and support staff—all dedicated to your success.</p>
+
+    <h2>Achievements & Milestones</h2>
+    <ul>
+      <li><strong>2022:</strong> Launched our first productivity app and expanded our core team.</li>
+      <li><strong>2023:</strong> Crossed 10,000 active users and introduced SaaS products.</li>
+      <li><strong>2024:</strong> Won “Emerging Tech Team” award at Pakistan Digital Awards.</li>
+      <li><strong>2025:</strong> Released AI-powered chatbot and reached 30,000+ users globally.</li>
+      <li>Featured in <em>TechCrunch Pakistan</em>, <em>ProPakistani</em>, and top tech podcasts.</li>
+    </ul>
+
+    <h2>Giving Back</h2>
+    <p>We regularly host free workshops, sponsor hackathons, and provide mentorship to students and aspiring developers. Our open-source projects are available for everyone to learn from and use.</p>
+
+    <h2>Join Our Journey</h2>
+    <p>
+      Whether you want to collaborate, join our team, or use our apps—we’d love to connect!<br>
+      <a href="contact.html">Contact us</a> or follow us on social media to stay updated.<br>
+      <br>
+      <strong>Let’s build something amazing together.</strong>
+    </p>
   </section>
 </main>
 
