@@ -3,277 +3,179 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team ABH PK - AI Chat</title>
-  <meta name="description" content="Interact with Team ABH PK's AI Chat powered by Google AI Studio API.">
-  <meta name="description" content="Interact with Team ABH PK's AI Chat powered by Google AI Studio API. Ask questions, get assistance, and explore the capabilities of our AI assistant.">
-    <meta name="keywords" content="AI Chat, Team ABH PK, Google AI Studio, AI Assistant, Chatbot, Natural Language Processing, Question Answering, Pakistan, Technology">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Team ABH PK">
-    <meta property="og:title" content="Team ABH PK - AI Chat">
-    <meta property="og:description" content="Interact with Team ABH PK's AI Chat powered by Google AI Studio API. Ask questions, get assistance, and explore the capabilities of our AI assistant.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="[YOUR_ACTUAL_PAGE_URL_HERE]">
-    <meta property="og:image" content="[URL_TO_YOUR_LOGO_OR_FEATURED_IMAGE]">
-    <meta property="og:site_name" content="Team ABH PK">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Team ABH PK - AI Chat">
-    <meta name="twitter:description" content="Interact with Team ABH PK's AI Chat powered by Google AI Studio API. Ask questions, get assistance, and explore the capabilities of our AI assistant.">
-    <meta name="twitter:url" content="[YOUR_ACTUAL_PAGE_URL_HERE]">
-    <meta name="twitter:image" content="[URL_TO_YOUR_LOGO_OR_FEATURED_IMAGE]">
+  <title>Team ABH PK – AI Chat</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-    :root {
-      --clr-primary: #5de0e6;
-      --clr-accent: #8060e0;
-      --clr-bg: #f0f4f8;
-      --clr-surface: rgba(255, 255, 255, 0.6);
-      --clr-text: #1f2937;
-      --transition: 0.5s ease;
-      --radius: 1.25rem;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      overflow-x: hidden;
-    }
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #f5f7fa; font-family: Inter, sans-serif; color: #1f2937; }
     header {
-      position: fixed; top: 0; left: 0; width: 100%;
-      padding: 1rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      backdrop-filter: blur(12px);
-      background: var(--clr-surface);
-      z-index: 1000;
+      width: 100vw;
+      background: rgba(255,255,255,0.92);
+      position: fixed; top: 0; left: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(80,100,144,0.10);
     }
-    .logo {
-      font-size: 1.5rem; font-weight: 700;
-      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
-      -webkit-background-clip: text; color: transparent;
-    }
-    nav { display: flex; gap: 1.5rem; }
-    nav a {
-      padding: .5rem; font-weight: 500;
-      color: var(--clr-text); text-decoration: none;
-      transition: color .3s;
-    }
-    nav a:hover { color: var(--clr-primary); }
-    nav a[aria-current="page"] {
-      color: var(--clr-primary);
-      font-weight: 700;
-    }
-    .hero {
-      height: 50vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      padding: 0 1rem;
-      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
-      color: #fff;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700; line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: clamp(1rem,2.5vw,1.25rem);
-      max-width: 700px;
-    }
+    .logo { font-weight: 700; font-size: 1.3rem; background: linear-gradient(90deg, #5de0e6, #8060e0); -webkit-background-clip: text; color: transparent; user-select: none; letter-spacing: 1px; text-decoration: none; }
+    .menu-toggle { display: none; }
+    nav { display: none; }
     main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 2rem;
+      padding: 0; margin: 0;
+      width: 100vw; height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
     }
-    .chat-container {
-      background: var(--clr-surface);
-      backdrop-filter: blur(12px);
-      border-radius: var(--radius);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-    .chat-log {
-      max-height: 300px;
-      overflow-y: auto;
-      padding: 1rem;
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-    }
-    .chat-log p {
-      margin-bottom: 1rem;
-    }
-    .chat-log .user-message {
-      font-weight: 600;
-      color: var(--clr-accent);
-    }
-    .chat-log .ai-response {
-      font-weight: 500;
-      color: var(--clr-primary);
-    }
-    .chat-input {
+    .chat-section {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 64px);
       display: flex;
-      gap: 1rem;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      background: #f5f7fa;
+      padding: 0; margin: 0;
     }
-    .chat-input textarea {
+    @media (max-width:600px) {.chat-section{top:60px;height:calc(100vh - 60px);} header{padding:1rem .4rem;}.logo{font-size:1.1rem;}}
+    .chat-log {
+      width: 100vw;
+      max-width: 650px;
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: calc(100vh - 170px);
+      overflow-y: auto;
+      border-radius: .9rem .9rem 0 0;
+      background: #f7f9fc;
+      border: 1px solid #e7ebf3;
+      border-bottom: none;
+      padding: 1rem .8rem;
+      font-size: 1.06rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .chat-message {margin:0;word-break:break-word;padding:.45rem .85rem;border-radius:.6rem;width:fit-content;max-width:95%;}
+    .user-message {align-self:flex-end;background:#ece9fd;color:#8060e0;font-weight:600;text-align:right;}
+    .ai-message {align-self:flex-start;background:#e6f6f9;color:#5de0e6;font-weight:500;text-align:left;}
+    .chat-form {
+      width: 100vw;
+      max-width: 650px;
+      display: flex;
+      gap: .7rem;
+      align-items: flex-end;
+      background: #fff;
+      border-radius: 0 0 .9rem .9rem;
+      box-shadow: 0 4px 20px rgba(80,100,144,0.10);
+      padding: .7rem .7rem .7rem .7rem;
+      border-top: 1px solid #e7ebf3;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .chat-form textarea {
       flex: 1;
-      padding: 1rem;
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: var(--radius);
+      min-height: 2.3rem;
+      max-height: 8rem;
       font-size: 1rem;
+      resize: vertical;
+      border-radius: .8rem;
+      padding: .65rem .9rem;
+      border: 1.5px solid #e2e7f3;
+      background: #f8fafc;
+      font-family: inherit;
+      outline: none;
+      transition: border .2s;
     }
-    .chat-input button {
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
-      color: white;
+    .chat-form textarea:focus {border:1.5px solid #8060e0;background:#fefeff;}
+    .chat-form button {
+      padding: 0.7rem 1.3rem;
+      background: linear-gradient(90deg,#5de0e6,#8060e0);
       border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-      font-size: 1rem;
+      border-radius: .8rem;
+      color: #fff;
       font-weight: 700;
-      transition: transform var(--transition);
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      box-shadow: 0 2px 8px rgba(128,128,192,0.07);
+      min-width: 70px;
     }
-    .chat-input button:hover {
-      transform: translateY(-2px);
-    }
-    .notice {
-      text-align: center;
-      color: #64748b;
-      font-size: 0.875rem;
-    }
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #64748b;
-      font-size: 0.9rem;
-      background: var(--clr-surface);
-      backdrop-filter: blur(12px);
-    }
-    footer a {
-      color: var(--clr-primary);
-      transition: color 0.3s;
-    }
-    footer a:hover {
-      color: var(--clr-accent);
-    }
-    @media (max-width: 768px) {
-      .chat-container {
-        padding: 1.5rem;
-      }
-      .chat-log {
-        max-height: 200px;
-      }
-      .chat-input textarea {
-        font-size: 0.9rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .chat-input {
-        flex-direction: column;
-      }
-      .chat-input textarea {
-        margin-bottom: 1rem;
-        font-size: 0.85rem;
-      }
-      .chat-input button {
-        font-size: 0.9rem;
-      }
-    }
+    .chat-form button:active {transform:scale(0.98);background:#8060e0;}
+    .chat-form button:disabled {opacity:0.6;background:#e0e2ec;color:#bbb;cursor:not-allowed;}
+    @media (max-width:700px) {.chat-log,.chat-form{max-width:99vw;}}
+    @media (max-width:400px) {.chat-form,.chat-log{padding-left:.2rem;padding-right:.2rem;}}
   </style>
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">Team Abh Pk</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="faq.html">FAQ</a>
-      <a href="ai.html" aria-current="page">AI Chat</a>
-      <a href="about.html">About</a>
-      <a href="apps.html">Apps</a>
-      <a href="team.html">Team</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <a href="index.html" class="logo">Team Abh PK</a>
+    <!-- Hamburger and nav removed for clean look, add back if you want menu -->
   </header>
-
-  <section class="hero">
-    <h1>AI Chat</h1>
-    <p>Interact with Team ABH PK's AI assistant powered by Google AI Studio API.</p>
-  </section>
-
   <main>
-    <div class="chat-container">
-      <div class="chat-log" id="chat-log">
+    <section class="chat-section" aria-label="AI Chat Window">
+      <div class="chat-log" id="chat-log" aria-live="polite" aria-atomic="false">
         <!-- Chat messages will appear here -->
       </div>
-      <div class="chat-input">
-        <textarea id="user-input" placeholder="Type your message here..."></textarea>
-        <button id="send-button">Send</button>
-      </div>
-    </div>
-    <div class="notice">
-      <p>Note: This AI is powered by the Google AI Studio API. Responses may vary based on the input.</p>
-    </div>
+      <form class="chat-form" id="chat-form" autocomplete="off">
+        <textarea id="user-input" placeholder="Type your message..." rows="1" required></textarea>
+        <button id="send-button" type="submit" aria-label="Send message">Send</button>
+      </form>
+    </section>
   </main>
-
-  <footer>
-    <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
-    <p>
-      Follow us on
-      <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>,
-      <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
-      <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </p>
-  </footer>
-
   <script>
-    const chatLog = document.getElementById('chat-log');
+    // Responsive textarea height
     const userInput = document.getElementById('user-input');
+    userInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    // Chat logic
+    const chatLog = document.getElementById('chat-log');
+    const chatForm = document.getElementById('chat-form');
     const sendButton = document.getElementById('send-button');
 
-    sendButton.addEventListener('click', async () => {
+    function appendMessage(content, className) {
+      const msg = document.createElement('p');
+      msg.className = 'chat-message ' + className;
+      msg.textContent = content;
+      chatLog.appendChild(msg);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
       const userMessage = userInput.value.trim();
       if (!userMessage) return;
-
-      // Display user message
-      const userMessageElement = document.createElement('p');
-      userMessageElement.className = 'user-message';
-      userMessageElement.textContent = `You: ${userMessage}`;
-      chatLog.appendChild(userMessageElement);
-
-      // Clear input
+      appendMessage(`You: ${userMessage}`, 'user-message');
       userInput.value = '';
-
-      // Call Google AI Studio API
+      userInput.style.height = 'auto';
+      sendButton.disabled = true;
       try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=AIZA_SYCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A`, {
+        // Replace with your actual Google AI Studio API key!
+        const response = await fetch("https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A", {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             prompt: {
               messages: [{ author: "user", content: userMessage }]
             }
           })
         });
-
         const data = await response.json();
         const aiResponse = data.candidates?.[0]?.content || "Sorry, I couldn't process that.";
-
-        // Display AI response
-        const aiResponseElement = document.createElement('p');
-        aiResponseElement.className = 'ai-response';
-        aiResponseElement.textContent = `AI: ${aiResponse}`;
-        chatLog.appendChild(aiResponseElement);
-
-        // Scroll to bottom
-        chatLog.scrollTop = chatLog.scrollHeight;
+        appendMessage(`AI: ${aiResponse}`, 'ai-message');
       } catch (error) {
-        // Display error message
-        const errorElement = document.createElement('p');
-        errorElement.className = 'ai-response';
-        errorElement.textContent = "Error: Unable to connect to the AI. Please try again later.";
-        chatLog.appendChild(errorElement);
+        appendMessage("Error: Unable to connect to the AI. Please try again later.", 'ai-message');
+        console.error(error);
+      }
+      sendButton.disabled = false;
+    });
+
+    // Keyboard shortcut: Ctrl+Enter or Cmd+Enter to send
+    userInput.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        sendButton.click();
       }
     });
   </script>
