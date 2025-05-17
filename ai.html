@@ -1,245 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://unpkg.com/@google/genai/dist/google-genai.umd.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Team ABH PK – AI Chat</title>
   <style>
-    html, body { height: 100%; margin: 0; padding: 0; }
-    body { min-height: 100vh; background: #f5f7fa; font-family: Inter, sans-serif; color: #1f2937; }
+    /* CSS Styles */
+    html, body { height: 100%; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f5f7fa; color: #1f2937; }
+    
     header {
-      width: 100vw;
       background: rgba(255,255,255,0.92);
-      position: fixed; top: 0; left: 0; z-index: 10;
-      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; width: 100%;
+      display: flex; justify-content: space-between;
       padding: 1rem 2rem; box-shadow: 0 4px 20px rgba(80,100,144,0.10);
+      z-index: 10;
     }
-    .logo { font-weight: 700; font-size: 1.3rem; background: linear-gradient(90deg, #5de0e6, #8060e0); -webkit-background-clip: text; color: transparent; user-select: none; letter-spacing: 1px; text-decoration: none; }
-    .menu-toggle { display: none; background: none; border: none; font-size: 2rem; color: var(--text); cursor: pointer; margin-left: 1rem; }
-    nav {
-      display: flex;
-      gap: 1.1rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    nav a {
-      color: #1f2937;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: .3rem .7rem;
-      border-radius: .7rem;
-      transition: background .2s, color .2s;
-    }
-    nav a[aria-current="page"] {
+    
+    .logo {
+      font-weight: 700; font-size: 1.3rem;
       background: linear-gradient(90deg, #5de0e6, #8060e0);
-      color: #fff;
+      -webkit-background-clip: text; color: transparent;
     }
-    nav a:hover {
-      background: #5de0e6;
-      color: #fff;
-    }
-    @media (max-width: 800px) {
-      header { flex-wrap: wrap; padding: 1rem 1rem; }
-      .menu-toggle { display: block; }
-      nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100vw;
-        background: rgba(255,255,255,0.97);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-        display: none;
-        z-index: 999;
-      }
-      nav.show { display: flex; }
-      nav a {
-        width: 100%;
-        padding: 1rem 2rem;
-        border-radius: 0;
-        font-size: 1.1rem;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      nav a:last-child { border-bottom: none; }
-    }
-    @media (max-width: 600px) {
-      .logo { font-size: 1.1rem; }
-      header { padding: 1rem .4rem; }
-    }
-    main {
-      flex: 1 1 auto;
+    
+    .chat-container {
+      margin-top: 80px;
+      height: calc(100vh - 160px);
+      max-width: 800px;
+      margin: 80px auto 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      justify-content: flex-end;
     }
-    .chat-section {
-      position: fixed;
-      top: 64px;
-      left: 0;
-      width: 100vw;
-      height: calc(100vh - 64px);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      background: #f5f7fa;
-      padding: 0;
-      margin: 0;
-    }
-    @media (max-width: 600px) {
-      .chat-section {
-        top: 60px;
-        height: calc(100vh - 60px);
-      }
-    }
+    
     .chat-log {
-      width: 100vw;
-      max-width: 650px;
-      flex: 1 1 auto;
-      min-height: 0;
-      max-height: calc(100vh - 170px);
-      overflow-y: auto;
-      border-radius: .9rem .9rem 0 0;
-      background: #f7f9fc;
-      border: 1px solid #e7ebf3;
-      border-bottom: none;
-      padding: 1rem .8rem;
-      font-size: 1.06rem;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-    .chat-message {margin:0;word-break:break-word;padding:.45rem .85rem;border-radius:.6rem;width:fit-content;max-width:95%;}
-    .user-message {align-self:flex-end;background:#ece9fd;color:#8060e0;font-weight:600;text-align:right;}
-    .ai-message {align-self:flex-start;background:#e6f6f9;color:#5de0e6;font-weight:500;text-align:left;}
-    .chat-form {
-      width: 100vw;
-      max-width: 650px;
-      display: flex;
-      gap: .7rem;
-      align-items: flex-end;
-      background: #fff;
-      border-radius: 0 0 .9rem .9rem;
-      box-shadow: 0 4px 20px rgba(80,100,144,0.10);
-      padding: .7rem .7rem .7rem .7rem;
-      border-top: 1px solid #e7ebf3;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-    .chat-form textarea {
       flex: 1;
-      min-height: 2.3rem;
-      max-height: 8rem;
-      font-size: 1rem;
-      resize: vertical;
-      border-radius: .8rem;
-      padding: .65rem .9rem;
-      border: 1.5px solid #e2e7f3;
-      background: #f8fafc;
-      font-family: inherit;
-      outline: none;
-      transition: border .2s;
+      overflow-y: auto;
+      padding: 1rem;
+      background: #f7f9fc;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid #e7ebf3;
     }
-    .chat-form textarea:focus {border:1.5px solid #8060e0;background:#fefeff;}
-    .chat-form button {
-      padding: 0.7rem 1.3rem;
-      background: linear-gradient(90deg,#5de0e6,#8060e0);
+    
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      max-width: 80%;
+      word-break: break-word;
+    }
+    
+    .user-message {
+      background: #ece9fd;
+      color: #8060e0;
+      margin-left: auto;
+    }
+    
+    .ai-message {
+      background: #e6f6f9;
+      color: #5de0e6;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      background: white;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #e7ebf3;
+      border-top: none;
+    }
+    
+    #user-input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #e2e7f3;
+      border-radius: 8px;
+      resize: none;
+    }
+    
+    #send-button {
+      padding: 0.8rem 1.5rem;
+      margin-left: 0.5rem;
+      background: linear-gradient(90deg, #5de0e6, #8060e0);
+      color: white;
       border: none;
-      border-radius: .8rem;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.05rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background .2s, transform .1s;
-      box-shadow: 0 2px 8px rgba(128,128,192,0.07);
-      min-width: 70px;
     }
-    .chat-form button:active {transform:scale(0.98);background:#8060e0;}
-    .chat-form button:disabled {opacity:0.6;background:#e0e2ec;color:#bbb;cursor:not-allowed;}
-    .loading-spinner {
+    
+    .loading {
       display: inline-block;
       width: 20px;
       height: 20px;
-      border: 3px solid rgba(255,255,255,.3);
+      border: 3px solid rgba(255,255,255,0.3);
       border-radius: 50%;
-      border-top-color: #fff;
+      border-top-color: white;
       animation: spin 1s ease-in-out infinite;
     }
+    
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-    @media (max-width:700px) {.chat-log,.chat-form{max-width:99vw;}}
-    @media (max-width:400px) {.chat-form,.chat-log{padding-left:.2rem;padding-right:.2rem;}}
+    
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body>
-  asdfghjkl;kjdsdfghjkl;jhgfddfgjkjhgfdssdfghjkllkjhgfdsasdfghjkl;kjdsasdfghk
   <header>
-    <a href="index.html" class="logo">Team Abh PK</a>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-controls="main-nav" aria-expanded="false">☰</button>
-    <nav id="main-nav">
-      <a href="index.html">Home</a>
-      <a href="faq.html">FAQ</a>
-      <a href="ai.html" aria-current="page">AI Chat</a>
-      <a href="about.html">About</a>
-      <a href="apps.html">Apps</a>
-      <a href="team.html">Team</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="logo">Team ABH PK AI Chat</div>
   </header>
-  <main>
-    <section class="chat-section" aria-label="AI Chat Window">
-      <div class="chat-log" id="chat-log" aria-live="polite" aria-atomic="false"></div>
-      <form class="chat-form" id="chat-form" autocomplete="off">
-        <textarea id="user-input" placeholder="Type your message..." rows="1" required></textarea>
-        <button id="send-button" type="submit" aria-label="Send message">
-          <span id="button-text">Send</span>
-          <span id="button-spinner" class="loading-spinner" style="display: none;"></span>
-        </button>
-      </form>
-    </section>
-  </main>
+
+  <div class="chat-container">
+    <div class="chat-log" id="chat-log"></div>
+    <div class="chat-input">
+      <textarea id="user-input" placeholder="Type your message..." rows="1"></textarea>
+      <button id="send-button" type="button">
+        <span id="button-text">Send</span>
+        <span id="button-spinner" class="loading" style="display: none;"></span>
+      </button>
+    </div>
+  </div>
+
   <script>
     // DOM Elements
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('main-nav');
     const chatLog = document.getElementById('chat-log');
-    const chatForm = document.getElementById('chat-form');
-    const sendButton = document.getElementById('send-button');
     const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
     const buttonText = document.getElementById('button-text');
     const buttonSpinner = document.getElementById('button-spinner');
 
-    // Hamburger menu toggle
-    menuToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('show');
-      const expanded = menuToggle.getAttribute('aria-expanded') === "true";
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      menuToggle.setAttribute('aria-label', !expanded ? "Close navigation" : "Open navigation");
-    });
+    // AI Model Instance
+    let model;
+    let isInitialized = false;
 
-    // Close mobile menu when clicking nav links
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(window.innerWidth < 801) {
-          mainNav.classList.remove('show');
-          menuToggle.setAttribute('aria-expanded', "false");
-          menuToggle.setAttribute('aria-label', "Open navigation");
+    // Initialize the AI
+    async function initializeAI() {
+      try {
+        // First load the Google GenAI library if not already loaded
+        if (!window.GoogleGenAI) {
+          await loadScript('https://unpkg.com/@google/genai/dist/google-genai.umd.js');
         }
+
+        // Check if library loaded successfully
+        if (!window.GoogleGenAI) {
+          throw new Error('Failed to load Google GenAI library');
+        }
+
+        const { GoogleGenAI } = window.GoogleGenAI;
+        
+        // Initialize with API key (NOTE: In production, use a backend service instead)
+        const genAI = new GoogleGenAI({
+          apiKey: "AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A" // Replace with your actual API key
+        });
+
+        // Get the generative model
+        model = await genAI.getGenerativeModel({
+          model: "gemini-pro",
+          generationConfig: {
+            maxOutputTokens: 1000
+          }
+        });
+
+        isInitialized = true;
+        addMessage("AI: Hello! How can I help you today?", 'ai-message');
+        
+      } catch (error) {
+        console.error('AI Initialization Error:', error);
+        addMessage(`AI: Initialization failed - ${error.message}`, 'error-message');
+        sendButton.disabled = true;
+      }
+    }
+
+    // Helper function to load scripts dynamically
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
       });
+    }
+
+    // Add message to chat log
+    function addMessage(text, className) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${className}`;
+      messageDiv.textContent = text;
+      chatLog.appendChild(messageDiv);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    // Handle user input
+    async function handleUserInput() {
+      const userMessage = userInput.value.trim();
+      if (!userMessage || !isInitialized) return;
+
+      // Add user message to chat
+      addMessage(`You: ${userMessage}`, 'user-message');
+      userInput.value = '';
+      
+      // Show loading state
+      buttonText.textContent = 'Thinking...';
+      buttonSpinner.style.display = 'inline-block';
+      sendButton.disabled = true;
+
+      try {
+        // Generate AI response
+        const result = await model.generateContent(userMessage);
+        const response = await result.response;
+        const text = await response.text();
+        
+        // Add AI response to chat
+        addMessage(`AI: ${text}`, 'ai-message');
+        
+      } catch (error) {
+        console.error('AI Error:', error);
+        addMessage(`AI: Sorry, I encountered an error - ${error.message}`, 'error-message');
+      } finally {
+        // Reset UI
+        buttonText.textContent = 'Send';
+        buttonSpinner.style.display = 'none';
+        sendButton.disabled = false;
+      }
+    }
+
+    // Event Listeners
+    sendButton.addEventListener('click', handleUserInput);
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleUserInput();
+      }
     });
 
     // Auto-resize textarea
@@ -248,89 +243,8 @@
       this.style.height = (this.scrollHeight) + 'px';
     });
 
-    // Append message to chat log
-    function appendMessage(content, className) {
-      const msg = document.createElement('p');
-      msg.className = 'chat-message ' + className;
-      msg.textContent = content;
-      chatLog.appendChild(msg);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
-
-    // Initialize Google GenAI
-    let model;
-    async function initAI() {
-      try {
-        const { GoogleGenAI } = window.GoogleGenAI;
-        const genAI = new GoogleGenAI({ 
-          // IMPORTANT: In production, use a backend service instead of exposing API keys
-          apiKey: "AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A" // Replace with your API key or use a backend
-        });
-        model = await genAI.getGenerativeModel({ model: "gemini-pro" });
-        appendMessage("AI: Hello! How can I help you today?", 'ai-message');
-      } catch (error) {
-        console.error("Failed to initialize AI:", error);
-        appendMessage("AI: Error initializing AI service. Please refresh the page.", 'ai-message');
-      }
-    }
-
-    // Handle chat form submission
-    chatForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const userMessage = userInput.value.trim();
-      if (!userMessage) return;
-      
-      // Display user message
-      appendMessage(`You: ${userMessage}`, 'user-message');
-      userInput.value = '';
-      userInput.style.height = 'auto';
-      
-      // Disable send button and show loading state
-      sendButton.disabled = true;
-      buttonText.textContent = "Sending";
-      buttonSpinner.style.display = "inline-block";
-
-      try {
-        if (!model) {
-          throw new Error("AI model not initialized");
-        }
-        
-        // Generate AI response
-        const result = await model.generateContent(userMessage);
-        const response = await result.response;
-        const text = await response.text();
-        
-        // Display AI response
-        appendMessage(`AI: ${text}`, 'ai-message');
-      } catch (error) {
-        console.error("Chat error:", error);
-        appendMessage("AI: Sorry, I encountered an error. Please try again.", 'ai-message');
-      } finally {
-        // Re-enable send button
-        sendButton.disabled = false;
-        buttonText.textContent = "Send";
-        buttonSpinner.style.display = "none";
-      }
-    });
-
-    // Keyboard shortcut: Ctrl+Enter or Cmd+Enter to send
-    userInput.addEventListener('keydown', function(e) {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        sendButton.click();
-      }
-    });
-
-    // Hide mobile menu when resizing to desktop
-    window.addEventListener('resize', () => {
-      if(window.innerWidth > 800) {
-        mainNav.classList.remove('show');
-        menuToggle.setAttribute('aria-expanded', "false");
-        menuToggle.setAttribute('aria-label', "Open navigation");
-      }
-    });
-
-    // Initialize the AI when page loads
-    window.addEventListener('DOMContentLoaded', initAI);
+    // Initialize when page loads
+    window.addEventListener('DOMContentLoaded', initializeAI);
   </script>
 </body>
 </html>
