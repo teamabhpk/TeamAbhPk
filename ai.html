@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/@google/genai/dist/google-genai.umd.js"></script>
   <title>Team ABH PK – AI Chat</title>
   <style>
     html, body { height: 100%; margin: 0; padding: 0; }
@@ -258,7 +259,7 @@
       }
       sendButton.disabled = false;
     });
-    import { GoogleGenAI } from "@google/genai";
+    const { GoogleGenAI } = window.GoogleGenAI;
 
 const ai = new GoogleGenAI({ apiKey: "AIzaSyCfi0JMfht-xOf2_YvofY7ZMf3BHzQmg1A" });
 
