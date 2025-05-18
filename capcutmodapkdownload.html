@@ -802,86 +802,7 @@
             margin-right: 0.5rem;
         }
         
-        /* Tutorials Section */
-        .tutorials {
-            margin-bottom: 4rem;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, rgba(93,224,230,0.05), rgba(128,96,224,0.05));
-        }
         
-        .tutorials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .tutorial-card {
-            background: var(--clr-surface);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-        
-        .tutorial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .tutorial-image {
-            height: 180px;
-            background-color: #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .tutorial-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .tutorial-card:hover .tutorial-image img {
-            transform: scale(1.05);
-        }
-        
-        .tutorial-content {
-            padding: 1.5rem;
-        }
-        
-        .tutorial-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .tutorial-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--clr-text-light);
-            margin-top: 1.5rem;
-        }
-        
-        .tutorial-difficulty {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .difficulty-beginner {
-            color: var(--clr-success);
-        }
-        
-        .difficulty-intermediate {
-            color: var(--clr-warning);
-        }
-        
-        .difficulty-advanced {
-            color: var(--clr-danger);
-        }
         
         /* Technical Specs Section */
         .specs {
@@ -1550,6 +1471,30 @@
       "fileSize": "85MB",
       "datePublished": "2024-05-10"
     }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('.accordion-header');
+    
+    headers.forEach(header => {
+        header.addEventListener('click', function() {
+            // Toggle active class on header
+            this.classList.toggle('active');
+            
+            // Get the next element (content)
+            const content = this.nextElementSibling;
+            
+            // Toggle active class on content
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
+                content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+});
     </script>
 
     <header>
