@@ -1496,6 +1496,26 @@
     });
 });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  const tabs = document.querySelectorAll('.features-tab');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      // Remove 'active' from all tabs and content
+      document.querySelectorAll('.features-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      // Add 'active' to clicked tab
+      this.classList.add('active');
+      
+      // Get the corresponding content and show it
+      const tabId = this.getAttribute('data-tab');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+});
+    </script>
 
     <header>
         <a href="capcutmodapkdownload.html" class="logo">CapCut Mod</a>
