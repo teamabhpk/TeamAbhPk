@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thank You - Team Abh Pk</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --clr-primary: #5de0e6;
+    --clr-accent: #8060e0;
+    --clr-bg: #f0f4f8;
+    --clr-surface: rgba(255, 255, 255, 0.6);
+    --clr-text: #1f2937;
+    --transition: 0.5s ease;
+    --radius: 1.25rem;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: var(--clr-surface);
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  nav a {
+    color: var(--clr-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  nav a:hover {
+    color: var(--clr-primary);
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: var(--clr-primary);
+    transition: width var(--transition);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile Menu Toggle */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--clr-text);
+    z-index: 1001;
+  }
+
+  /* Mobile Navigation */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: var(--clr-surface);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    nav.active {
+      right: 0;
+    }
+
+    nav a {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+    }
+
+    /* Close button for mobile menu */
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  
+  /* Hero Section */
+  .hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    color: #fff;
+    padding: 0 1rem;
+    margin-top: 60px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  /* Main content */
+  main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Thank You Content */
+  .thank-you-content {
+    background: var(--clr-surface);
+    border-radius: var(--radius);
+    padding: 3rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+  }
+
+  .thank-you-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--clr-text);
+  }
+
+  .thank-you-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #475569;
+  }
+
+  .btn-home {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-home:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--clr-bg);
+    color: #475569;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  footer a {
+    color: var(--clr-primary);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem;
+    }
+
+    .hero {
+      height: 50vh;
+      clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    .thank-you-content {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+
+    .thank-you-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">Team Abh Pk</a>
+  <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+  <nav id="main-nav">
+    <button class="close-btn" aria-label="Close navigation">×</button>
+    <a href="index.html">Home</a>
+    <a href="ai.html">Ai Chat</a>
+    <a href="about.html">About</a>
+    <a href="apps.html">Apps</a>
+    <a href="services.html">Services</a>
+    <a href="team.html">Team</a>
+    <a href="careers.html">Careers</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Thank You!</h1>
+  <p>We appreciate you reaching out to us.</p>
+</section>
+
+<main role="main" aria-label="Thank You Page">
+  <div class="thank-you-content">
+    <h2>Your Message Has Been Sent</h2>
+    <p>Thank you for contacting Team Abh Pk. We've received your message and our team will get back to you as soon as possible.</p>
+    <p>In the meantime, feel free to explore more about our services or check out our blog for the latest updates.</p>
+    <a href="index.html" class="btn-home">Return to Homepage</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Team Abh Pk. All rights reserved.</p>
+  <p>Follow us on 
+    <a href="#" target="_blank">Twitter</a>, 
+    <a href="#" target="_blank">LinkedIn</a>, 
+    <a href="#" target="_blank">Facebook</a>
+  </p>
+</footer>
+
+<script>
+  // Mobile menu toggle functionality
+  const menuToggle = document.querySelector('.menu-toggle');
+  const closeBtn = document.querySelector('.close-btn');
+  const nav = document.querySelector('nav');
+  
+  menuToggle.addEventListener('click', () => {
+    nav.classList.add('active');
+  });
+  
+  closeBtn.addEventListener('click', () => {
+    nav.classList.remove('active');
+  });
+  
+  // Close menu when clicking on a link
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
