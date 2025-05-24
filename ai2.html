@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="blanklogo.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team ABH PK – AI Chat</title>
+  <!-- Add highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <style>
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Inter', sans-serif; 
+    }
+    body { 
+      background: #f5f7fa; 
+      color: #1f2937; 
+    }
+    
+    header {
+      background: rgba(255,255,255,0.92);
+      position: fixed; 
+      top: 0; 
+      width: 100%;
+      display: flex; 
+      justify-content: space-between;
+      padding: 1rem 2rem; 
+      box-shadow: 0 4px 20px rgba(80,100,144,0.10);
+      z-index: 10;
+    }
+    
+    .logo {
+      font-weight: 700; 
+      font-size: 1.3rem;
+      background: linear-gradient(90deg, #5de0e6, #8060e0);
+      -webkit-background-clip: text; 
+      color: transparent;
+    }
+    
+    .chat-container {
+      margin-top: 80px;
+      height: calc(100vh - 160px);
+      max-width: 800px;
+      margin: 80px auto 0;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .chat-log {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      background: #f7f9fc;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid #e7ebf3;
+    }
+    
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      max-width: 80%;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+    
+    .user-message {
+      background: #ece9fd;
+      color: #8060e0;
+      margin-left: auto;
+      border: 1px solid #d9d2f9;
+    }
+    
+    .ai-message {
+      background: #e6f6f9;
+      color: #1f2937;
+      border: 1px solid #c2e9f0;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      background: white;
+      border-radius: 0 0 8px 8px;
+      border: 1px solid #e7ebf3;
+      border-top: none;
+    }
+    
+    #user-input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #e2e7f3;
+      border-radius: 8px;
+      resize: none;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    #send-button {
+      padding: 0.8rem 1.5rem;
+      margin-left: 0.5rem;
+      background: linear-gradient(90deg, #5de0e6, #8060e0);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    
+    #send-button:hover {
+      opacity: 0.9;
+    }
+    
+    #send-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      padding: 1rem;
+      background: #fff0f0;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      padding: 0.8rem 1rem;
+      background: #e6f6f9;
+      border-radius: 8px;
+      max-width: 80%;
+      margin: 0.5rem 0;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #5de0e6;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    
+    .typing-dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+    
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes typingAnimation {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+    
+    /* Enhanced Markdown formatting */
+    .ai-message strong {
+      font-weight: 600;
+      color: #1a365d;
+    }
+    
+    .ai-message em {
+      font-style: italic;
+    }
+    
+    /* Improved code blocks */
+    .code-container {
+      position: relative;
+      margin: 0.8em 0;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #282c34;
+    }
+    
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5em 1em;
+      background: #1e2227;
+      color: #abb2bf;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    
+    .code-language {
+      font-weight: bold;
+    }
+    
+    .code-actions {
+      display: flex;
+      gap: 0.8em;
+    }
+    
+    .code-action-btn {
+      background: none;
+      border: none;
+      color: #abb2bf;
+      cursor: pointer;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      transition: color 0.2s;
+    }
+    
+    .code-action-btn:hover {
+      color: #ffffff;
+    }
+    
+    .code-block {
+      margin: 0;
+      padding: 1em;
+      overflow-x: auto;
+      color: #abb2bf;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+    
+    /* Tables */
+    .ai-message table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      font-size: 0.9em;
+    }
+    
+    .ai-message th, .ai-message td {
+      border: 1px solid #e2e8f0;
+      padding: 0.6em 1em;
+      text-align: left;
+    }
+    
+    .ai-message th {
+      background-color: #f0f4f8;
+      font-weight: 600;
+    }
+    
+    .ai-message tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    
+    /* Action buttons */
+    .action-buttons {
+      display: flex;
+      gap: 0.5em;
+      margin-top: 0.8em;
+      flex-wrap: wrap;
+    }
+    
+    .action-btn {
+      padding: 0.4em 0.8em;
+      background: #edf2f7;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .action-btn:hover {
+      background: #e2e8f0;
+    }
+    
+    /* Model selector */
+    .model-selector {
+      position: absolute;
+      right: 2rem;
+      top: 1rem;
+    }
+    
+    #model-select {
+      padding: 0.4em 0.8em;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      font-size: 0.9em;
+    }
+    
+    /* File attachment */
+    .file-input-container {
+      position: relative;
+      margin-right: 0.5em;
+    }
+    
+    #file-input {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+    
+    .file-input-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8em 1em;
+      background: #edf2f7;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .file-input-label:hover {
+      background: #e2e8f0;
+    }
+    
+    .file-preview {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.5em;
+      background: #f0f4f8;
+      border-radius: 4px;
+      margin-top: 0.5em;
+      font-size: 0.9em;
+    }
+    
+    .file-preview button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #718096;
+    }
+    
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.8em;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .chat-container {
+        height: calc(100vh - 140px);
+        margin-top: 70px;
+      }
+      
+      header {
+        padding: 0.8rem 1rem;
+      }
+      
+      .model-selector {
+        position: static;
+        margin: 0.5rem 1rem;
+      }
+      
+      #model-select {
+        width: 100%;
+      }
+      
+      .message {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="logo">Team ABH PK - AI Chat</div>
+    </a>
+    <div class="model-selector">
+      <select id="model-select">
+        <option value="gemma-3-27b-it">Gemma 3 27B</option>
+        <option value="gemma-3-13b-it">Gemma 3 13B</option>
+        <option value="gemma-3-7b-it">Gemma 3 7B</option>
+        <option value="gemma-2b-it">Gemma 2B</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="chat-container">
+    <div class="chat-log" id="chat-log"></div>
+    <div class="chat-input">
+      <div class="file-input-container">
+        <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx,.csv,.xlsx,.json,.py,.js,.html,.css">
+        <label for="file-input" class="file-input-label" title="Attach file">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 18V12" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 15H15" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </label>
+      </div>
+      <textarea id="user-input" placeholder="Ask anything..." rows="1"></textarea>
+      <button id="send-button" type="button">
+        <span id="button-text">Send</span>
+        <span id="button-spinner" class="loading" style="display: none;"></span>
+      </button>
+    </div>
+    <div id="file-preview-container" style="display: none;"></div>
+  </div>
+
+  <script>
+    // DOM Elements
+    const chatLog = document.getElementById('chat-log');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const buttonText = document.getElementById('button-text');
+    const buttonSpinner = document.getElementById('button-spinner');
+    const modelSelect = document.getElementById('model-select');
+    const fileInput = document.getElementById('file-input');
+    const filePreviewContainer = document.getElementById('file-preview-container');
+    
+    // Conversation history
+    let conversationHistory = [];
+    let attachedFile = null;
+    
+    // Initialize highlight.js
+    hljs.highlightAll();
+    
+    // Add message to chat log with enhanced formatting
+    function addMessage(text, role) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${role}-message`;
+      
+      // Process markdown and code blocks
+      let processedText = text
+        // Convert markdown bold
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        // Convert markdown italics
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        // Convert markdown code blocks with language
+        .replace(/```(\w*)\n([\s\S]*?)```/g, function(match, lang, code) {
+          return `<div class="code-container">
+                    <div class="code-header">
+                      <span class="code-language">${lang || 'code'}</span>
+                      <div class="code-actions">
+                        <button class="code-action-btn copy-code" title="Copy code">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M16 8V6C16 5.46957 15.7893 4.96086 15.4142 4.58579C15.0391 4.21071 14.5304 4 14 4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V14C4 14.5304 4.21071 15.0391 4.58579 15.4142C4.96086 15.7893 5.46957 16 6 16H8" stroke="currentColor" stroke-width="1.5"/>
+                          </svg>
+                          Copy
+                        </button>
+                        ${isRunnable(lang) ? 
+                          `<button class="code-action-btn run-code" title="Run code">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 3L19 12L5 21V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Run
+                          </button>` : ''}
+                      </div>
+                    </div>
+                    <pre class="code-block"><code class="language-${lang || 'plaintext'}">${escapeHtml(code)}</code></pre>
+                  </div>`;
+        })
+        // Convert inline code
+        .replace(/`(.*?)`/g, '<code>$1</code>')
+        // Convert line breaks
+        .replace(/\n/g, '<br>')
+        // Convert tables
+        .replace(/\|(.+?)\|/g, function(match, row) {
+          if (row.includes('---')) return ''; // Skip separator rows
+          return `<tr><td>${row.split('|').join('</td><td>')}</td></tr>`;
+        })
+        // Convert lists
+        .replace(/^\s*[\-*]\s+(.+)$/gm, '<li>$1</li>')
+        // Convert numbered lists
+        .replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
+      
+      // Wrap lists in ul/ol
+      processedText = processedText.replace(/<li>.*?<\/li>/g, function(match) {
+        return `<ul>${match}</ul>`;
+      });
+      
+      // Add action buttons for AI messages
+      if (role === 'ai') {
+        processedText += `
+          <div class="action-buttons">
+            <button class="action-btn copy-message" title="Copy entire message">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 8V6C16 5.46957 15.7893 4.96086 15.4142 4.58579C15.0391 4.21071 14.5304 4 14 4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V14C4 14.5304 4.21071 15.0391 4.58579 15.4142C4.96086 15.7893 5.46957 16 6 16H8" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              Copy
+            </button>
+            <button class="action-btn regenerate-btn" title="Regenerate response">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 4V10H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 20V14H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.51 9C4.01717 7.56678 4.87913 6.2854 6.01547 5.27542C7.1518 4.26543 8.52547 3.55976 10.0083 3.22426C11.4911 2.88875 13.0348 2.93434 14.4952 3.35677C15.9556 3.77921 17.2853 4.56471 18.36 5.64L23 10M1 14L5.64 18.36C6.71475 19.4353 8.04437 20.2208 9.50481 20.6432C10.9652 21.0657 12.5089 21.1112 13.9917 20.7757C15.4745 20.4402 16.8482 19.7346 17.9845 18.7246C19.1209 17.7146 19.9828 16.4332 20.49 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Regenerate
+            </button>
+          </div>
+        `;
+      }
+      
+      messageDiv.innerHTML = processedText;
+      chatLog.appendChild(messageDiv);
+      
+      // Highlight code blocks
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
+      
+      // Add event listeners for new buttons
+      addButtonEventListeners(messageDiv);
+      
+      chatLog.scrollTop = chatLog.scrollHeight;
+      
+      // Add to conversation history
+      conversationHistory.push({
+        role: role === 'user' ? 'user' : 'model',
+        parts: [{ text: text }]
+      });
+    }
+    
+    // Check if code is runnable (for demo purposes)
+    function isRunnable(lang) {
+      return ['javascript', 'python', 'html'].includes(lang.toLowerCase());
+    }
+    
+    // Escape HTML for code blocks
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    
+    // Add event listeners to buttons
+    function addButtonEventListeners(container) {
+      // Copy code buttons
+      container.querySelectorAll('.copy-code').forEach(button => {
+        button.addEventListener('click', () => {
+          const codeBlock = button.closest('.code-container').querySelector('code');
+          navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+            const originalText = button.innerHTML;
+            button.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Copied!
+            `;
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          });
+        });
+      });
+      
+      // Run code buttons (demo functionality)
+      container.querySelectorAll('.run-code').forEach(button => {
+        button.addEventListener('click', () => {
+          const codeBlock = button.closest('.code-container').querySelector('code');
+          const lang = button.closest('.code-container').querySelector('.code-language').textContent.toLowerCase();
+          const code = codeBlock.textContent;
+          
+          // Demo execution - in a real app you'd send to a backend or use a sandbox
+          alert(`Running ${lang} code:\n\n${code}\n\n(In a real implementation, this would execute the code in a sandbox)`);
+        });
+      });
+      
+      // Copy message buttons
+      container.querySelectorAll('.copy-message').forEach(button => {
+        button.addEventListener('click', () => {
+          const messageContent = button.closest('.message').textContent.replace(/CopyRegenerate/g, '').trim();
+          navigator.clipboard.writeText(messageContent).then(() => {
+            const originalText = button.innerHTML;
+            button.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Copied!
+            `;
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          });
+        });
+      });
+      
+      // Regenerate buttons
+      container.querySelectorAll('.regenerate-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const messageDiv = button.closest('.message');
+          const messageIndex = Array.from(chatLog.children).indexOf(messageDiv);
+          
+          // Remove this message and all following messages
+          while (chatLog.children.length > messageIndex) {
+            chatLog.removeChild(chatLog.lastChild);
+          }
+          
+          // Remove f
