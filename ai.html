@@ -8,6 +8,7 @@
   <!-- Add highlight.js for code syntax highlighting -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
   <style>
     html, body { 
       height: 100%; 
@@ -379,7 +380,29 @@
       visibility: visible;
       opacity: 1;
     }
-    
+    /* code runner */
+    .code-output {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+  font-family: monospace;
+}
+
+.output-header {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #495057;
+}
+
+.output-success {
+  color: #2b8a3e;
+}
+
+.output-error {
+  color: #c92a2a;
+}
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .chat-container {
@@ -598,15 +621,94 @@
       
       // Run code buttons (demo functionality)
       container.querySelectorAll('.run-code').forEach(button => {
-        button.addEventListener('click', () => {
-          const codeBlock = button.closest('.code-container').querySelector('code');
-          const lang = button.closest('.code-container').querySelector('.code-language').textContent.toLowerCase();
-          const code = codeBlock.textContent;
+  button.addEventListener('click', () => {
+    const codeContainer = button.closest('.code-container');
+    const codeBlock = codeContainer.querySelector('code');
+    const lang = codeContainer.querySelector('.code-language').textContent.toLowerCase();
+    const code = codeBlock.textContent;
+    
+    // Create output container if it doesn't exist
+    let outputContainer = codeContainer.querySelector('.code-output');
+    if (!outputContainer) {
+      outputContainer = document.createElement('div');
+      outputContainer.className = 'code-output';
+      codeContainer.appendChild(outputContainer);
+    }
+    
+    // Clear previous output
+    outputContainer.innerHTML = '';
+    
+    try {
+      switch(lang) {
+        case 'javascript':
+          // Create sandboxed iframe for JS execution
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
           
-          // Demo execution - in a real app you'd send to a backend or use a sandbox
-          alert(`Running ${lang} code:\n\n${code}\n\n(In a real implementation, this would execute the code in a sandbox)`);
-        });
-      });
+          try {
+            const result = iframe.contentWindow.eval(code);
+            outputContainer.innerHTML = `<div class="output-header">Output:</div><pre>${JSON.stringify(result, null, 2)}</pre>`;
+          } catch (e) {
+            outputContainer.innerHTML = `<div class="output-error">Error: ${e.message}</div>`;
+          }
+          
+          setTimeout(() => document.body.removeChild(iframe), 1000);
+          break;
+          
+        case 'python':
+          // Initialize Pyodide if not already loaded
+          if (!window.pyodide) {
+            outputContainer.innerHTML = '<div>Loading Python runtime...</div>';
+            loadPyodide().then(pyodide => {
+              window.pyodide = pyodide;
+              runPythonCode(code, outputContainer);
+            });
+          } else {
+            runPythonCode(code, outputContainer);
+          }
+          break;
+          
+        case 'html':
+          // Open HTML in new window
+          const htmlWindow = window.open('', '_blank');
+          htmlWindow.document.write(code);
+          htmlWindow.document.close();
+          outputContainer.innerHTML = '<div>Opened in new window</div>';
+          break;
+          
+        default:
+          outputContainer.innerHTML = `<div>Execution not supported for ${lang}</div>`;
+      }
+    } catch (e) {
+      outputContainer.innerHTML = `<div class="output-error">Error: ${e.message}</div>`;
+    }
+  });
+});
+
+// Helper function for Python execution
+async function runPythonCode(code, outputContainer) {
+  try {
+    // Create a virtual output device
+    const output = [];
+    window.pyodide.setStdout({
+      batched: (text) => output.push(text)
+    });
+    
+    await window.pyodide.loadPackagesFromImports(code);
+    const result = await window.pyodide.runPythonAsync(code);
+    
+    if (output.length > 0) {
+      outputContainer.innerHTML = `<div class="output-header">Output:</div><pre>${output.join('\n')}</pre>`;
+    } else if (result !== undefined) {
+      outputContainer.innerHTML = `<div class="output-header">Result:</div><pre>${result}</pre>`;
+    } else {
+      outputContainer.innerHTML = '<div class="output-success">Code executed successfully</div>';
+    }
+  } catch (e) {
+    outputContainer.innerHTML = `<div class="output-error">Python Error: ${e.message}</div>`;
+  }
+}
       
       // Copy message buttons
       container.querySelectorAll('.copy-message').forEach(button => {
@@ -806,7 +908,10 @@
     }
     
     // Event Listeners
-    sendButton.addEventListener('click', handleUserInput);
+    sendButton.addEventListener('click', function(){
+        e.preventDefault();
+        handleUserInput();
+    });
     
     userInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
