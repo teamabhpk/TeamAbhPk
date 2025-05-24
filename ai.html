@@ -247,11 +247,7 @@
       messageDiv.className = `message ${role}-message`;
       
       // Simple markdown formatting
-      let formattedText = text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/`(.*?)`/g, '<code>$1</code>')
-        .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>');
+      
       
       messageDiv.innerHTML = formattedText;
       chatLog.appendChild(messageDiv);
