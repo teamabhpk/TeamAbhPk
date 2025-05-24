@@ -247,9 +247,13 @@
       messageDiv.className = `message ${role}-message`;
       
       // Simple markdown formatting
+      let formattedText = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<p>$1</p>')
+        .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>');
       
-      
-      messageDiv.innerHTML = text;
+      messageDiv.innerHTML = formattedText;
       chatLog.appendChild(messageDiv);
       chatLog.scrollTop = chatLog.scrollHeight;
       
