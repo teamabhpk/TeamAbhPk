@@ -215,14 +215,14 @@
 <body>
   <header>
     <a href="index.html" style="text-decoration:none;">
-      <div class="logo">Team ABH PK - Gemma Chat</div>
+      <div class="logo">Team ABH PK - AI Chat</div>
     </a>
   </header>
 
   <div class="chat-container">
     <div class="chat-log" id="chat-log"></div>
     <div class="chat-input">
-      <textarea id="user-input" placeholder="Ask Gemma anything..." rows="1"></textarea>
+      <textarea id="user-input" placeholder="Ask anything..." rows="1"></textarea>
       <button id="send-button" type="button">
         <span id="button-text">Send</span>
         <span id="button-spinner" class="loading" style="display: none;"></span>
@@ -282,7 +282,7 @@
         <div class="typing-dot"></div>
         <div class="typing-dot"></div>
         <div class="typing-dot"></div>
-        <span>Gemma is typing...</span>
+        <span>AI is typing...</span>
       `;
       chatLog.appendChild(typingDiv);
       chatLog.scrollTop = chatLog.scrollHeight;
@@ -315,21 +315,11 @@
           },
           body: JSON.stringify({
             contents: conversationHistory,
-            safetySettings: [
-              {
-                category: "HARM_CATEGORY_HATE_SPEECH",
-                threshold: "BLOCK_ONLY_HIGH"
-              },
-              {
-                category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-                threshold: "BLOCK_ONLY_HIGH"
-              }
-            ],
             generationConfig: {
               temperature: 0.7,
               topP: 0.9,
               topK: 40,
-              maxOutputTokens: 2048
+              maxOutputTokens: 8048
             }
           })
         });
