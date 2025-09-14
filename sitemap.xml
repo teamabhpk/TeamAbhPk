@@ -10,6 +10,41 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>http://teamabhpk.me/</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teamabhpk.me/index.html</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teamabhpk.me/ads.txt</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.teamabhpk.me/</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teamabhpk.me/400/</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teamabhpk.me/sitemap.xml</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teamabhpk.me/5/</loc>
+  <lastmod>2025-05-10T12:27:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
   <loc>https://teamabhpk.me/ai.html</loc>
   <lastmod>2025-06-12T12:27:35+00:00</lastmod>
   <priority>0.80</priority>
@@ -92,6 +127,7 @@
 
 
 </urlset>
+
 
 
 
